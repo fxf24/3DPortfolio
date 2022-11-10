@@ -1,0 +1,130 @@
+<Root Name="Center" Visible="true" ObType="1">
+    <Mesh File="1.Point.mesh"/>
+    <Shader File="1.Cube.hlsl"/>
+    <Transform>
+        <Position X="-8.0187836" Y="0" Z="37.895702"/>
+        <Scale X="1" Y="1" Z="1"/>
+        <Rotation X="0" Y="4.2732248" Z="0"/>
+    </Transform>
+    <Children Size="6"/>
+    <Child0 Name="Body" Visible="true" ObType="0">
+        <Mesh File="1.Cube1.mesh"/>
+        <Shader File="1.Cube.hlsl"/>
+        <Transform>
+            <Position X="0" Y="0" Z="0"/>
+            <Scale X="1.5" Y="2" Z="1.5"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <Children Size="0"/>
+    </Child0>
+    <Child1 Name="Head" Visible="true" ObType="0">
+        <Mesh File="1.Cube1.mesh"/>
+        <Shader File="1.Cube.hlsl"/>
+        <Transform>
+            <Position X="0" Y="3" Z="0"/>
+            <Scale X="1" Y="1" Z="1"/>
+            <Rotation X="0" Y="0.18098138" Z="0"/>
+        </Transform>
+        <Children Size="0"/>
+    </Child1>
+    <Child2 Name="LeftDeltoidMuscle" Visible="true" ObType="0">
+        <Mesh File="1.Point.mesh"/>
+        <Shader File="1.Cube.hlsl"/>
+        <Transform>
+            <Position X="2" Y="1.3" Z="0"/>
+            <Scale X="1" Y="1" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <Children Size="1"/>
+        <Child0 Name="LeftHand" Visible="true" ObType="0">
+            <Mesh File="1.Cube1.mesh"/>
+            <Shader File="1.Cube.hlsl"/>
+            <Transform>
+                <Position X="0" Y="-2" Z="0"/>
+                <Scale X="0.5" Y="2.5" Z="0.5"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="0"/>
+        </Child0>
+    </Child2>
+    <Child3 Name="LeftPelvisMuscle" Visible="true" ObType="0">
+        <Mesh File="1.Point.mesh"/>
+        <Shader File="1.Cube.hlsl"/>
+        <Transform>
+            <Position X="-0.75" Y="-2.5" Z="0"/>
+            <Scale X="1" Y="1" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <Children Size="2"/>
+        <Child0 Name="LeftFoot" Visible="true" ObType="0">
+            <Mesh File="1.Cube2.mesh"/>
+            <Shader File="1.Cube.hlsl"/>
+            <Transform>
+                <Position X="0" Y="-6" Z="0.60000002"/>
+                <Scale X="1" Y="0.5" Z="1.5"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="0"/>
+        </Child0>
+        <Child1 Name="LeftLeg" Visible="true" ObType="0">
+            <Mesh File="1.Cube1.mesh"/>
+            <Shader File="1.Cube.hlsl"/>
+            <Transform>
+                <Position X="0" Y="-2.5" Z="0"/>
+                <Scale X="0.69999999" Y="3.5" Z="0.69999999"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="0"/>
+        </Child1>
+    </Child3>
+    <Child4 Name="RightDeltoidMuscle" Visible="true" ObType="0">
+        <Mesh File="1.Point.mesh"/>
+        <Shader File="1.Cube.hlsl"/>
+        <Transform>
+            <Position X="-2" Y="1.3" Z="0"/>
+            <Scale X="1" Y="1" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <Children Size="1"/>
+        <Child0 Name="RightHand" Visible="true" ObType="0">
+            <Mesh File="1.Cube1.mesh"/>
+            <Shader File="1.Cube.hlsl"/>
+            <Transform>
+                <Position X="0" Y="-2" Z="0"/>
+                <Scale X="0.5" Y="2.5" Z="0.5"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="0"/>
+        </Child0>
+    </Child4>
+    <Child5 Name="RightPelvisMuscle" Visible="true" ObType="0">
+        <Mesh File="1.Point.mesh"/>
+        <Shader File="1.Cube.hlsl"/>
+        <Transform>
+            <Position X="0.75" Y="-2.5" Z="0"/>
+            <Scale X="1" Y="1" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <Children Size="2"/>
+        <Child0 Name="RightFoot" Visible="true" ObType="0">
+            <Mesh File="1.Cube1.mesh"/>
+            <Shader File="1.Cube.hlsl"/>
+            <Transform>
+                <Position X="0" Y="-6" Z="0.60000002"/>
+                <Scale X="1" Y="0.5" Z="1.5"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="0"/>
+        </Child0>
+        <Child1 Name="RightLeg" Visible="true" ObType="0">
+            <Mesh File="1.Cube1.mesh"/>
+            <Shader File="1.Cube.hlsl"/>
+            <Transform>
+                <Position X="0" Y="-2.5" Z="0"/>
+                <Scale X="0.69999999" Y="3.5" Z="0.69999999"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="0"/>
+        </Child1>
+    </Child5>
+</Root>

@@ -1,0 +1,55 @@
+<Root Name="Actor" Visible="true" ObType="4">
+    <Mesh File="6.UI.mesh"/>
+    <Shader File="6.Cube.hlsl"/>
+    <Material File="Win.mtl"/>
+    <Transform>
+        <Position X="0.61900002" Y="0.040364534" Z="0"/>
+        <Scale X="0.639" Y="1" Z="1"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Transform>
+    <Children Size="4"/>
+    <Child0 Name="00" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.Cube.hlsl"/>
+        <Material File="0.mtl"/>
+        <Transform>
+            <Position X="-0.28881639" Y="0.2" Z="0"/>
+            <Scale X="0.30000001" Y="0.30000001" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <Children Size="0"/>
+    </Child0>
+    <Child1 Name="01" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.Cube.hlsl"/>
+        <Material File="1.mtl"/>
+        <Transform>
+            <Position X="0.28881639" Y="0.2" Z="0"/>
+            <Scale X="0.30000001" Y="0.30000001" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <Children Size="0"/>
+    </Child1>
+    <Child2 Name="10" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.Cube.hlsl"/>
+        <Material File="2.mtl"/>
+        <Transform>
+            <Position X="-0.28881639" Y="-0.25" Z="0"/>
+            <Scale X="0.30000001" Y="0.30000001" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <Children Size="0"/>
+    </Child2>
+    <Child3 Name="11" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.Cube.hlsl"/>
+        <Material File="3.mtl"/>
+        <Transform>
+            <Position X="0.28881639" Y="-0.25" Z="0"/>
+            <Scale X="0.30000001" Y="0.30000001" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <Children Size="0"/>
+    </Child3>
+</Root>

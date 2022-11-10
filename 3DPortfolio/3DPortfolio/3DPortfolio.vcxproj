@@ -18,6 +18,88 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Billboard.cpp" />
+    <ClCompile Include="BinaryFile.cpp" />
+    <ClCompile Include="BlendState.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="CubeMap.cpp" />
+    <ClCompile Include="DepthState.cpp" />
+    <ClCompile Include="Dijkstra.cpp" />
+    <ClCompile Include="Direct3D11.cpp" />
+    <ClCompile Include="Dwrite.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GOImGui.cpp" />
+    <ClCompile Include="GOSaveLoad.cpp" />
+    <ClCompile Include="Gui.cpp" />
+    <ClCompile Include="Input.cpp" />
+    <ClCompile Include="Light.cpp" />
+    <ClCompile Include="Material.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Pop.cpp" />
+    <ClCompile Include="Rain.cpp" />
+    <ClCompile Include="Random.cpp" />
+    <ClCompile Include="RasterState.cpp" />
+    <ClCompile Include="RenderTarget.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="Skeleton.cpp" />
+    <ClCompile Include="Sky.cpp" />
+    <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="Terrain.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="UI.cpp" />
+    <ClCompile Include="Util.cpp" />
+    <ClCompile Include="VertexType.cpp" />
+    <ClCompile Include="Window.cpp" />
+    <ClCompile Include="Xml.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Animation.h" />
+    <ClInclude Include="Billboard.h" />
+    <ClInclude Include="BinaryFile.h" />
+    <ClInclude Include="BlendState.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Collider.h" />
+    <ClInclude Include="CubeMap.h" />
+    <ClInclude Include="DepthState.h" />
+    <ClInclude Include="Dijkstra.h" />
+    <ClInclude Include="Direct3D11.h" />
+    <ClInclude Include="Dwrite.h" />
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Gui.h" />
+    <ClInclude Include="Input.h" />
+    <ClInclude Include="Light.h" />
+    <ClInclude Include="Material.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Pop.h" />
+    <ClInclude Include="Rain.h" />
+    <ClInclude Include="Random.h" />
+    <ClInclude Include="RasterState.h" />
+    <ClInclude Include="RenderTarget.h" />
+    <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="Skeleton.h" />
+    <ClInclude Include="Sky.h" />
+    <ClInclude Include="Sound.h" />
+    <ClInclude Include="Terrain.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="Timer.h" />
+    <ClInclude Include="Transform.h" />
+    <ClInclude Include="Types.h" />
+    <ClInclude Include="UI.h" />
+    <ClInclude Include="Util.h" />
+    <ClInclude Include="VertexType.h" />
+    <ClInclude Include="Window.h" />
+    <ClInclude Include="Xml.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -40,7 +122,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -78,6 +160,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)\Build\3DPortfolio\</OutDir>
+    <IntDir>$(SolutionDir)\Build\3DPortfolio\Obj\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -116,6 +200,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -138,22 +223,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="3DPortfolio.h" />
-    <ClInclude Include="framework.h" />
-    <ClInclude Include="Resource.h" />
-    <ClInclude Include="targetver.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="3DPortfolio.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="3DPortfolio.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="3DPortfolio.ico" />
-    <Image Include="small.ico" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
