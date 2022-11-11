@@ -8,20 +8,9 @@ private:
 	CubeMan* player;
 	Ray		cubeManTopRay;
 
-	Actor* Point;
-	Actor* Arrow;
-	Light* Point2;
 	Terrain* Map;
 
 	Int2   Pos;
-
-
-	//Ã¹¹ø¤Š ·£´õÅ¸°Ù
-	CubeMap* cubeMap = nullptr;
-	Shader* cubeMappingShader;
-	Shader* cubeMappingShader2;
-	Shader* cubeMappingShader3;
-	Actor*	sphere;
 
 	//µÎ¹øÂ° ·»´õ Å¸°Ù
 	RenderTarget* RT = nullptr;
