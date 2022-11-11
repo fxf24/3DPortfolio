@@ -52,7 +52,7 @@ void Main::PreRender()
 
 int WINAPI wWinMain(HINSTANCE instance, HINSTANCE prevInstance, LPWSTR param, int command)
 {
-	App.SetAppName(L"Game2");
+	App.SetAppName(L"HackandSlahRPG");
 	App.SetInstance(instance);
 	WIN->Create();
 	D3D->Create();
