@@ -152,8 +152,11 @@ void GameObject::SaveObject(Xml::XMLElement* This, Xml::XMLDocument* doc)
 	}
 	else if (type == ObType::Terrain)
 	{
+		Xml::XMLElement* terrain = doc->NewElement("Terrain");
+		This->LinkEndChild(terrain);
 		Terrain* TerrainOb = dynamic_cast<Terrain*>(this);
 		TerrainOb->dijkstra.SaveFile(TerrainOb->file);
+		terrain->SetAttribute("showNode", TerrainOb->showNode);
 	}
 	else if (type == ObType::Light)
 	{
@@ -284,6 +287,8 @@ void GameObject::LoadObject(Xml::XMLElement* This)
 	{
 		Terrain* TerrainOb = dynamic_cast<Terrain*>(this);
 		TerrainOb->dijkstra.LoadFile(TerrainOb->file);
+		component = This->FirstChildElement("Terrain");
+		TerrainOb->showNode = component->BoolAttribute("showNode");
 	}
 	else if (type == ObType::Light)
 	{

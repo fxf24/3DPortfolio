@@ -10,6 +10,30 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HackandSlashRPG", "HackandS
 		{490D5744-E210-4924-A443-D378DC070D6A} = {490D5744-E210-4924-A443-D378DC070D6A}
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameObject", "GameObject", "{78DB2E57-38CF-4430-AC19-FA06EE2DFE44}"
+	ProjectSection(SolutionItems) = preProject
+		Contents\GameObject\Archer.xml = Contents\GameObject\Archer.xml
+		Contents\GameObject\Cam.xml = Contents\GameObject\Cam.xml
+		Contents\GameObject\Cam2.xml = Contents\GameObject\Cam2.xml
+		Contents\GameObject\Character.xml = Contents\GameObject\Character.xml
+		Contents\GameObject\Character2.xml = Contents\GameObject\Character2.xml
+		Contents\GameObject\Grid.xml = Contents\GameObject\Grid.xml
+		Contents\GameObject\hammer.xml = Contents\GameObject\hammer.xml
+		Contents\GameObject\Line.xml = Contents\GameObject\Line.xml
+		Contents\GameObject\message.xml = Contents\GameObject\message.xml
+		Contents\GameObject\Rain.xml = Contents\GameObject\Rain.xml
+		Contents\GameObject\skill.xml = Contents\GameObject\skill.xml
+		Contents\GameObject\Sphere.xml = Contents\GameObject\Sphere.xml
+		Contents\GameObject\Sphere2.xml = Contents\GameObject\Sphere2.xml
+		Contents\GameObject\Sun.xml = Contents\GameObject\Sun.xml
+		Contents\GameObject\Terrain.xml = Contents\GameObject\Terrain.xml
+		Contents\GameObject\Wall.xml = Contents\GameObject\Wall.xml
+		Contents\GameObject\Wall2.xml = Contents\GameObject\Wall2.xml
+		Contents\GameObject\Wasteland.xml = Contents\GameObject\Wasteland.xml
+		Contents\GameObject\Window.xml = Contents\GameObject\Window.xml
+		Contents\GameObject\Window2.xml = Contents\GameObject\Window2.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64

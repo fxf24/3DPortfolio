@@ -5,7 +5,7 @@ Scene1::Scene1()
     sky = Sky::Create();
     Cam = Camera::Create();
   
-    player = new CubeMan();
+    player = new Player();
     cubeManTopRay.direction = Vector3(0, -1, 0);
 
     Map = Terrain::Create();
@@ -38,7 +38,6 @@ Scene1::~Scene1()
 
 void Scene1::Init()
 {
-    
     time = 0.0f;
     Cam->LoadFile("Cam.xml");
     Camera::main = Cam;
@@ -126,7 +125,21 @@ void Scene1::LateUpdate()
             skill->SetWorldPos(Hit);
             skill->visible = true;
             skill_time = 0.0f;
+            player->Attack();
+            Vector3 Dir = Hit - player->GetWorldPos();
+            Dir.y = 0;
+            Dir.Normalize();
+            // -PI ~ PI
+            float Yaw = atan2f(Dir.x, Dir.z) + PI;
+            // -PI ~ PI
+            player->rotation.y = Yaw;
+
+            lerpValue = 1.0f;
+            RlerpValue = 1.0f;
+            findPath = false;
         }
+
+
     }
 
     if (skill_time > 1.0f)
@@ -176,6 +189,7 @@ void Scene1::LateUpdate()
             path.push_back(Hit);
             findPath = true;
             route = 0;       
+            player->Run();
         }
         else
         {
@@ -215,6 +229,8 @@ void Scene1::LateUpdate()
             }
             RlerpValue = 0.0f;
             //cubeMan->rotation.y = Yaw;
+            player->Run();
+
         }
     }
 
@@ -276,7 +292,7 @@ void Scene1::LateUpdate()
         Vector3 coord = Util::Lerp(from, to, lerpValue);
         player->SetWorldPos(coord);
         Vector3 Dis = from - to;
-        lerpValue += DELTA / Dis.Length() * 20.0f;
+        lerpValue += DELTA / Dis.Length() * 20.0f * player->GetMovementSpeed();
 
         Vector3 Hit2;
         if (Util::RayIntersectMap(cubeManTopRay, Map, Hit2))
@@ -293,6 +309,10 @@ void Scene1::LateUpdate()
             {
                 route++;
                 findPath = true;
+            }
+            else
+            {
+                player->Idle();
             }
         }
     }

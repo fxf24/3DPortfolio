@@ -20,7 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blur.cpp" />
-    <ClCompile Include="CubeMan.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Inven.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Scene1.cpp" />
@@ -28,7 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Blur.h" />
-    <ClInclude Include="CubeMan.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Inven.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="Scene1.h" />

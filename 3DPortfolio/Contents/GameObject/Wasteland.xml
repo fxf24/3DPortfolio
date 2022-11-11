@@ -7,6 +7,7 @@
         <Scale X="1" Y="1" Z="1"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Transform>
+    <Terrain showNode="false"/>
     <Children Size="14"/>
     <Child0 Name="Collider0" Visible="false" ObType="0">
         <Collider ColliderType="1" Visible="false">

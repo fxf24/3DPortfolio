@@ -26,11 +26,18 @@ void Main::Release()
 
 void Main::Update()
 {
+	if (INPUT->KeyDown(VK_ESCAPE))
+	{
+		esc = !esc;
+	}
+
+	if (!esc)
 	SCENE->Update();
 }
 
 void Main::LateUpdate()
 {
+	if (!esc)
 	SCENE->LateUpdate();
 }
 

@@ -5,7 +5,7 @@
 class Main : public Scene
 {
 private:
-
+	bool esc = false;
 	
 
 	
