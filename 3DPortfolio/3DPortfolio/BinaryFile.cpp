@@ -127,8 +127,12 @@ BinaryReader::~BinaryReader()
 
 }
 
-void BinaryReader::Open(wstring filePath)
+bool BinaryReader::Open(wstring filePath)
 {
+	if (filePath.length() <= 0)
+	{
+		return false;
+	}
 	assert(filePath.length() > 0);
 	fileHandle = CreateFile
 	(
@@ -144,6 +148,7 @@ void BinaryReader::Open(wstring filePath)
 
 	bool isChecked = fileHandle != INVALID_HANDLE_VALUE;
 	assert(isChecked);
+	return !isChecked;
 }
 
 void BinaryReader::Close()

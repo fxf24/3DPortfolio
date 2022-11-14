@@ -29,6 +29,8 @@ Scene1::Scene1()
     skill->material = make_shared<Material>();
     skill->material->LoadFile("skill.mtl");
 
+    monster = new Monster();
+
 }
 
 Scene1::~Scene1()
@@ -96,6 +98,7 @@ void Scene1::Update()
     ImGui::Begin("Hierarchy");
     sky->RenderHierarchy();
     player->RenderHierarchy();
+    monster->RenderHierarchy();
     Map->RenderHierarchy();
     Cam->RenderHierarchy();
     rain->RenderHierarchy();
@@ -104,6 +107,7 @@ void Scene1::Update()
 
     Cam->Update();
     player->Update();
+    monster->Update();
     Map->Update();
     sky->Update();
     PostEffect->Update();
@@ -325,6 +329,7 @@ void Scene1::PreRender()
     Cam->Set();
     sky->Render();
     player->Render();
+    monster->Render();
     Map->Render();
     rain->Render();
     skill->Render();

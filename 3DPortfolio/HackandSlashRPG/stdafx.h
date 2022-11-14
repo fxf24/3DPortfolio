@@ -5,6 +5,7 @@
 #include "Inven.h"
 #include "Shop.h"
 #include "Player.h"
+#include "Monster.h"
 #include "Scene1.h"
 
 #define BLUR BlurManager::GetInstance()
