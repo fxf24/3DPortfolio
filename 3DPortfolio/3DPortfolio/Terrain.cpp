@@ -405,9 +405,9 @@ bool Terrain::PathFinding(deque<Vector3>& Way, int Start, int End)
     return temp;
 }
 
-void Terrain::Render(class Shader* otherShader)
+void Terrain::Render()
 {
-    Actor::Render(otherShader);
+    Actor::Render();
     Vector3 Up = Vector3(0, 1, 0);
     if (showNode)
     {
@@ -437,7 +437,10 @@ void Terrain::Render(class Shader* otherShader)
     }
 
 }
-
+void Terrain::CubeMapRender()
+{
+    Actor::CubeMapRender();
+}
 bool Terrain::RayCastingCollider(Ray WRay, OUT Vector3& HitPoint)
 {
     for (auto it = obList.begin(); it != obList.end(); it++)

@@ -4,6 +4,7 @@
 #include "Blur.h"
 #include "Inven.h"
 #include "Shop.h"
+#include "Projectile.h"
 #include "Player.h"
 #include "Monster.h"
 #include "Scene1.h"

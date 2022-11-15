@@ -15,7 +15,7 @@ void Billboard::Update()
 	Actor::Update();
 }
 
-void Billboard::Render(class Shader* otherShader)
+void Billboard::Render()
 {
 	//
 
@@ -24,7 +24,7 @@ void Billboard::Render(class Shader* otherShader)
 	vertex[0].size = Vector2(S._11, S._22);
 	vertex[0].pivot = Vector2(parent->S._11, parent->S._22);
 	mesh->UpdateMesh();
-	Actor::Render(otherShader);
+	Actor::Render();
 
 	//DEPTH->Set(true);
 }

@@ -18,6 +18,9 @@
     <ClCompile Include="Monster.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Blur.h" />
@@ -36,6 +39,9 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Monster.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

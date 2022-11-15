@@ -30,7 +30,11 @@ Scene1::Scene1()
     skill->material->LoadFile("skill.mtl");
 
     monster = new Monster();
-
+    for (int i = 0; i < 50; i++)
+    {
+        pjPool[i] = new Projectile();
+        pjPool[i]->visible = false;
+    }
 }
 
 Scene1::~Scene1()
@@ -113,6 +117,11 @@ void Scene1::Update()
     PostEffect->Update();
     rain->Update();
     skill->Update();
+    for (int i = 0; i < 50; i++)
+    {
+        if (pjPool[i]->visible)
+            pjPool[i]->Update();
+    }
 }
 
 void Scene1::LateUpdate()
@@ -141,9 +150,16 @@ void Scene1::LateUpdate()
             lerpValue = 1.0f;
             RlerpValue = 1.0f;
             findPath = false;
+
+            for (int i = 0; i < 50; i++)
+            {
+                if (!pjPool[i]->visible)
+                {
+                    pjPool[i]->Shoot(player->GetWorldPos(), Dir, 10.0f);
+                    break;
+                }
+            }
         }
-
-
     }
 
     if (skill_time > 1.0f)
@@ -333,6 +349,11 @@ void Scene1::PreRender()
     Map->Render();
     rain->Render();
     skill->Render();
+    for (int i = 0; i < 50; i++)
+    {
+        if (pjPool[i]->visible)
+            pjPool[i]->Render();
+    }
 }
 
 void Scene1::Render()

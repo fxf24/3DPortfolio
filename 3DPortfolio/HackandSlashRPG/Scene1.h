@@ -31,6 +31,8 @@ private:
 	bool findPath = false;
 	int route = -1;
 	vector<Vector3> path;
+
+	Projectile* pjPool[50];
 public:
 	Scene1();
 	~Scene1();
