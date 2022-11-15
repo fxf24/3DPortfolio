@@ -21,6 +21,7 @@ class GameObject : public Transform
 private:
 	static GameObject*		axis;
 	static Material*		defalutMaterial;
+	static Shader**			cubeMapShader;
 public:
 	static GameObject* Create(string name = "GameObject");
 	static void CreateStaticMember();
@@ -47,7 +48,8 @@ protected:
 public:
 	virtual void	Release();
 	virtual void	Update();
-	virtual void	Render(class Shader* otherShader = nullptr);
+	virtual void	Render();
+	virtual void	CubeMapRender();
 	void			AddChild(GameObject* child);
 	void			AddBone(GameObject* child);
 	bool			RenderHierarchy();
@@ -81,6 +83,7 @@ public:
 	void			LoadFile(string file);
 	virtual void	RenderDetail();
 	virtual void	Update();
-	virtual void    Render(class Shader* otherShader = nullptr);
+	virtual void    Render();
+	virtual void	CubeMapRender();
 };
 

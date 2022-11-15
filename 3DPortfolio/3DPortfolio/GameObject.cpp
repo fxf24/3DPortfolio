@@ -9,9 +9,6 @@ GameObject::GameObject()
 	shader = nullptr;
 	material = nullptr;
 	collider = nullptr;
-
-	//mesh = make_shared<Mesh>();
-	//material = make_shared<Material>();
 }
 Actor::Actor()
 {
@@ -119,7 +116,7 @@ void GameObject::Update()
 		it->second->Update();
 }
 
-void GameObject::Render(class Shader* otherShader)
+void GameObject::Render()
 {
 	if (visible)
 	{
@@ -127,14 +124,7 @@ void GameObject::Render(class Shader* otherShader)
 		{
 			Transform::Set();
 			//prerender같은곳에서만 다른 쉐이더 사용할경우
-			if (otherShader)
-			{
-				otherShader->Set();
-			}
-			else
-			{
-				shader->Set();
-			}
+			shader->Set();
 			mesh->Set();
 
 			if (material)
@@ -148,10 +138,7 @@ void GameObject::Render(class Shader* otherShader)
 
 		for (auto it = children.begin(); it != children.end(); it++)
 		{
-			if(it->second->type == ObType::GameObject)
-				it->second->Render(otherShader);
-			else
-				it->second->Render();
+			it->second->Render();
 		}
 	}
 
@@ -171,10 +158,43 @@ void GameObject::Render(class Shader* otherShader)
 	}
 
 }
+void GameObject::CubeMapRender()
+{
+	if (visible)
+	{
+		if (mesh)
+		{
+			Transform::Set();
 
+			if (cubeMapShader[(int)mesh->vertexType])
+			{
+				cubeMapShader[(int)mesh->vertexType]->Set();
+			}
+			else
+			{
+				return;
+			}
+
+
+			mesh->Set();
+
+			if (material)
+				material->Set();
+			else
+				defalutMaterial->Set();
+
+			D3D->GetDC()->DrawIndexed(mesh->indexCount, 0, 0);
+		}
+		for (auto it = children.begin(); it != children.end(); it++)
+		{
+			it->second->CubeMapRender();
+		}
+	}
+}
 
 GameObject* GameObject::axis = nullptr;
 Material* GameObject::defalutMaterial = nullptr;
+Shader** GameObject::cubeMapShader = nullptr;
 void GameObject::CreateStaticMember()
 {
 	axis = new GameObject();
@@ -182,12 +202,37 @@ void GameObject::CreateStaticMember()
 	axis->shader  = RESOURCE->shaders.Load("1.Cube.hlsl");
 	axis->S = Matrix::CreateScale(Vector3(500.0f, 500.0f, 500.0f));
 	defalutMaterial = new Material();
+	cubeMapShader = new Shader * [10];
+	for (int i = 0; i < 10; i++)
+	{
+		cubeMapShader[i] = nullptr;
+	}
+	for (int i = 0; i < 6; i++)
+	{
+		cubeMapShader[i] = new Shader();
+		cubeMapShader[i]->LoadFile(to_string(i) + ".CubeMap.hlsl");
+		cubeMapShader[i]->LoadGeometry();
+	}
+	
+
+	/*cubeMapShader[5] = new Shader();
+	cubeMapShader[5]->LoadFile(to_string(5) + ".CubeMap.hlsl");
+	cubeMapShader[5]->LoadGeometry();
+
+	cubeMapShader[4] = new Shader();
+	cubeMapShader[4]->LoadFile(to_string(4) + ".CubeMap.hlsl");
+	cubeMapShader[4]->LoadGeometry();*/
 }
 
 void GameObject::DeleteStaticMember()
 {
 	SafeDelete(axis);
 	SafeDelete(defalutMaterial);
+	for (int i = 0; i < 10; i++)
+	{
+		SafeDelete(cubeMapShader[i]);
+	}
+	
 }
 
 void GameObject::AddChild(GameObject* child)
@@ -260,12 +305,21 @@ void Actor::Update()
 	GameObject::Update();
 }
 
-void Actor::Render(class Shader* otherShader)
+void Actor::Render()
 {
 	if (skeleton)
 	{
 		//if (anim)anim->Update();
 		skeleton->Set();
 	}
-	GameObject::Render(otherShader);
+	GameObject::Render();
 }
+void Actor::CubeMapRender()
+{
+	if (skeleton)
+	{
+		skeleton->Set();
+	}
+	GameObject::CubeMapRender();
+}
+
