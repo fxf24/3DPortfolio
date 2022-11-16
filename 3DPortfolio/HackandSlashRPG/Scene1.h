@@ -33,6 +33,9 @@ private:
 	vector<Vector3> path;
 
 	Projectile* pjPool[50];
+	Monster* monsters[100];
+
+
 public:
 	Scene1();
 	~Scene1();

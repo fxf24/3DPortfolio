@@ -33,7 +33,6 @@ void Monster::Attack()
 Monster::Monster()
 {
 	LoadFile("Monster1.xml");
-	state = PlayerState::IDLE;
 	Idle();
 
 	movementSpeed = 1.0f;

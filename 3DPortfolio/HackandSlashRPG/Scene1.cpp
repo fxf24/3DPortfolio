@@ -35,6 +35,12 @@ Scene1::Scene1()
         pjPool[i] = new Projectile();
         pjPool[i]->visible = false;
     }
+
+    for (int i = 0; i < 100; i++)
+    {
+        monsters[i] = new Monster();
+
+    }
 }
 
 Scene1::~Scene1()
