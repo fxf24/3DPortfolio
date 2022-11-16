@@ -2,6 +2,11 @@
     <Skeleton File="Ch30_nonPBR/Ch30_nonPBR.skel" BoneIndexCount="69"/>
     <Animations AnimSize="4" File0="Zombie Idle/Zombie Idle0.anim" File1="Zombie Walk/Zombie Walk0.anim" File2="Zombie Run/Zombie Run0.anim" File3="Zombie Attack/Zombie Attack0.anim"/>
     <Shader File="4.cube.hlsl"/>
+    <Collider ColliderType="1" Visible="true">
+        <Position X="0" Y="88" Z="0"/>
+        <Scale X="30" Y="88" Z="18"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Collider>
     <Transform>
         <Position X="0" Y="0" Z="0"/>
         <Scale X="0.050000001" Y="0.050000001" Z="0.050000001"/>
