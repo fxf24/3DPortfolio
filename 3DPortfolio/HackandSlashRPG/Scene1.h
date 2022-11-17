@@ -6,7 +6,6 @@ private:
 
 	Sky* sky;
 	Player* player;
-	Monster* monster;
 	Ray		cubeManTopRay;
 
 	Terrain* Map;

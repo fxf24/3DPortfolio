@@ -11,12 +11,12 @@ Scene1::Scene1()
     Map = Terrain::Create();
     Map->LoadFile("Wasteland.xml");
     Map->CreateStructuredBuffer();
+    Map->Update();
 
     RT = new RenderTarget();
     PostEffect = UI::Create();
     PostEffect->LoadFile("Window2.xml");
 
-    monster = new Monster();
     for (int i = 0; i < 50; i++)
     {
         pjPool[i] = new Projectile();
@@ -26,8 +26,16 @@ Scene1::Scene1()
 
         monsters[i]->SetWorldPosX(RANDOM->Float(-100.0f, 100.0f));
         monsters[i]->SetWorldPosZ(RANDOM->Float(-100.0f, 100.0f));
-    }
 
+        monsters[i]->WorldUpdate();
+        while (Map->Intersect(monsters[i]->collider))
+        {
+            cout << "in" << i << endl;
+            monsters[i]->SetWorldPosX(RANDOM->Float(-100.0f, 100.0f));
+            monsters[i]->SetWorldPosZ(RANDOM->Float(-100.0f, 100.0f));
+            monsters[i]->WorldUpdate();
+        }
+    }
 }
 
 Scene1::~Scene1()
@@ -95,14 +103,12 @@ void Scene1::Update()
     ImGui::Begin("Hierarchy");
     sky->RenderHierarchy();
     player->RenderHierarchy();
-    monster->RenderHierarchy();
     Map->RenderHierarchy();
     Cam->RenderHierarchy();
     ImGui::End();
 
     Cam->Update();
     player->Update();
-    monster->Update();
     Map->Update();
     sky->Update();
     PostEffect->Update();
@@ -112,7 +118,8 @@ void Scene1::Update()
         if (pjPool[i]->visible)
             pjPool[i]->Update();
 
-        monsters[i]->Update();
+        if (monsters[i])
+            monsters[i]->Update();
     }
 }
 
@@ -120,56 +127,36 @@ void Scene1::LateUpdate()
 {
     Ray Mouse = Util::MouseToRay(INPUT->position, Camera::main);
     Vector3 Hit;
-    //if (Map->ComPutePicking(Mouse, Hit))
-    if (Map->ComPutePicking(Mouse, Hit))
+
+    if (INPUT->KeyDown(VK_LBUTTON))
     {
-        //Player->SetWorldPos(Hit);
+        Map->ComPutePicking(Mouse, Hit);
+        player->Attack();
+        Vector3 Dir = Hit - player->GetWorldPos();
+        Dir.y = 0;
+        Dir.Normalize();
+        // -PI ~ PI
+        float Yaw = atan2f(Dir.x, Dir.z) + PI;
+        // -PI ~ PI
+        player->rotation.y = Yaw;
 
-        if (INPUT->KeyDown(VK_LBUTTON))
+        lerpValue = 1.0f;
+        RlerpValue = 1.0f;
+        findPath = false;
+
+        for (int i = 0; i < 50; i++)
         {
-            player->Attack();
-            Vector3 Dir = Hit - player->GetWorldPos();
-            Dir.y = 0;
-            Dir.Normalize();
-            // -PI ~ PI
-            float Yaw = atan2f(Dir.x, Dir.z) + PI;
-            // -PI ~ PI
-            player->rotation.y = Yaw;
-
-            lerpValue = 1.0f;
-            RlerpValue = 1.0f;
-            findPath = false;
-
-            for (int i = 0; i < 50; i++)
+            if (!pjPool[i]->visible)
             {
-                if (!pjPool[i]->visible)
-                {
-                    pjPool[i]->Shoot(player->GetWorldPos(), Dir, 10.0f);
-                    break;
-                }
+                pjPool[i]->Shoot(player->GetWorldPos(), Dir, 10.0f);
+                break;
             }
-        }
-    }
-
-    cubeManTopRay.position = player->GetWorldPos();
-    cubeManTopRay.position.y += 1000.0f;
-    Vector3 hit;
-
-    if (INPUT->KeyDown(VK_F1))
-    {
-        Ray Mouse = Util::MouseToRay(INPUT->position, Camera::main);
-        Vector3 Hit;
-        if (Map->RayCastingCollider(Mouse, Hit))
-        {
-            cout << "콜라이더에 막힘" << endl;
         }
     }
 
     if (INPUT->KeyDown(VK_MBUTTON))
     {
-
-        Ray Mouse = Util::MouseToRay(INPUT->position, Camera::main);
-        Vector3 Hit, Hit2;
+        Vector3 Hit2;
         Ray CharacterToMouse;
         Map->ComPutePicking(Mouse, Hit);
         CharacterToMouse.position = player->GetWorldPos();
@@ -190,7 +177,7 @@ void Scene1::LateUpdate()
             path.insert(path.end(), way.begin(), way.end());
             path.push_back(Hit);
             findPath = true;
-            route = 0;       
+            route = 0;
             player->Run();
         }
         else
@@ -235,6 +222,11 @@ void Scene1::LateUpdate()
 
         }
     }
+    
+
+    cubeManTopRay.position = player->GetWorldPos();
+    cubeManTopRay.position.y += 1000.0f;
+    Vector3 hit;
 
     if (findPath)
     {
@@ -318,6 +310,27 @@ void Scene1::LateUpdate()
             }
         }
     }
+
+    for (int i = 0; i < 50; i++)
+    {
+        if (pjPool[i]->visible)
+        {
+            for (int j = 0; j < 50; j++)
+            {
+                if (monsters[j])
+                {
+                    if (pjPool[i]->collider->Intersect(monsters[j]->collider))
+                    {
+                        Monster* temp = monsters[j];
+                        monsters[j] = nullptr;
+                        delete temp;
+                    }
+                }
+            }
+            
+        }
+    }
+
 }
 
 void Scene1::PreRender()
@@ -327,14 +340,13 @@ void Scene1::PreRender()
     Cam->Set();
     sky->Render();
     player->Render();
-    monster->Render();
     Map->Render();
     for (int i = 0; i < 50; i++)
     {
         if (pjPool[i]->visible)
             pjPool[i]->Render();
-
-        monsters[i]->Render();
+        if (monsters[i])
+            monsters[i]->Render();
     }
 }
 

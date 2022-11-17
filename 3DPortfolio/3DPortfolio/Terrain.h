@@ -75,5 +75,6 @@ public:
     virtual void	CubeMapRender() override;
     bool            RayCastingCollider(Ray WRay, OUT Vector3& HitPoint);
     bool            RayCastingCollider(Ray WRay, OUT Vector3& HitPoint, float distance);
+    bool            Intersect(Collider* target);
 };
 
