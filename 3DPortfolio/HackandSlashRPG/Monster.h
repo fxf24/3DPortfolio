@@ -7,6 +7,7 @@ private:
 	Vector3     lastPos;
 	float movementSpeed;
 	float attackSpeed;
+	float hp;
 
 private:
 

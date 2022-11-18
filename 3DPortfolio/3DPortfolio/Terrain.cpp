@@ -472,3 +472,18 @@ bool Terrain::RayCastingCollider(Ray WRay, OUT Vector3& HitPoint, float distance
     }
     return false;
 }
+
+bool Terrain::Intersect(Collider* target)
+{
+    for (auto it = obList.begin(); it != obList.end(); it++)
+    {
+        if (not it->second->collider) continue;
+
+        if (it->second->collider->Intersect(target))
+        {
+            cout << it->first << endl;
+            return true;
+        }
+    }
+    return false;
+}

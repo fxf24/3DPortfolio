@@ -35,6 +35,7 @@ Monster::Monster()
 	LoadFile("Monster1.xml");
 	Idle();
 
+	hp = 10.0f;
 	movementSpeed = 1.0f;
 	attackSpeed = 1.0f;
 }
@@ -55,4 +56,5 @@ void Monster::Update()
 
 void Monster::WorldUpdate()
 {
+	GameObject::Update();
 }
