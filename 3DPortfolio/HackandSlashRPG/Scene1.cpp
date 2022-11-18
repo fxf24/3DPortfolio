@@ -119,7 +119,7 @@ void Scene1::Update()
             pjPool[i]->Update();
 
         if (monsters[i])
-            monsters[i]->Update();
+            monsters[i]->Update(monsters, 50);
     }
 }
 
