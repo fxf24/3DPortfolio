@@ -16,11 +16,6 @@ private:
 	//µÎ¹øÂ° ·»´õ Å¸°Ù
 	RenderTarget* RT = nullptr;
 	UI* PostEffect;
-	float refractionIdx = 1.0f;
-
-	Rain* rain;
-	Rain* skill;
-	float skill_time = 1.0f;
 
 	Vector3			from, to;
 	float			lerpValue;
@@ -33,8 +28,7 @@ private:
 	vector<Vector3> path;
 
 	Projectile* pjPool[50];
-	Monster* monsters[100];
-
+	Monster* monsters[50];
 
 public:
 	Scene1();

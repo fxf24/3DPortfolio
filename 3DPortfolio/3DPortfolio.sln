@@ -21,6 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameObject", "GameObject", 
 		Contents\GameObject\hammer.xml = Contents\GameObject\hammer.xml
 		Contents\GameObject\Line.xml = Contents\GameObject\Line.xml
 		Contents\GameObject\message.xml = Contents\GameObject\message.xml
+		Contents\GameObject\Monster1.xml = Contents\GameObject\Monster1.xml
 		Contents\GameObject\Rain.xml = Contents\GameObject\Rain.xml
 		Contents\GameObject\skill.xml = Contents\GameObject\skill.xml
 		Contents\GameObject\Sphere.xml = Contents\GameObject\Sphere.xml

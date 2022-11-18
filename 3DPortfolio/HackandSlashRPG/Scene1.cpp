@@ -16,30 +16,16 @@ Scene1::Scene1()
     PostEffect = UI::Create();
     PostEffect->LoadFile("Window2.xml");
 
-    rain = Rain::Create();
-    rain->LoadFile("Rain.xml");
-    //rain->Reset();
-
-    skill = Rain::Create();
-    //skill->LoadFile("skill.xml");
-    skill->desc.velocity = Vector3(0, -100, 0);
-    skill->desc.range = Vector3(50, 100, 50);
-
-    skill->visible = false;
-    skill->material = make_shared<Material>();
-    skill->material->LoadFile("skill.mtl");
-
     monster = new Monster();
     for (int i = 0; i < 50; i++)
     {
         pjPool[i] = new Projectile();
         pjPool[i]->visible = false;
-    }
 
-    for (int i = 0; i < 100; i++)
-    {
         monsters[i] = new Monster();
 
+        monsters[i]->SetWorldPosX(RANDOM->Float(-100.0f, 100.0f));
+        monsters[i]->SetWorldPosZ(RANDOM->Float(-100.0f, 100.0f));
     }
 }
 
@@ -111,8 +97,6 @@ void Scene1::Update()
     monster->RenderHierarchy();
     Map->RenderHierarchy();
     Cam->RenderHierarchy();
-    rain->RenderHierarchy();
-    skill->RenderHierarchy();
     ImGui::End();
 
     Cam->Update();
@@ -121,12 +105,13 @@ void Scene1::Update()
     Map->Update();
     sky->Update();
     PostEffect->Update();
-    rain->Update();
-    skill->Update();
+
     for (int i = 0; i < 50; i++)
     {
         if (pjPool[i]->visible)
             pjPool[i]->Update();
+
+        monsters[i]->Update();
     }
 }
 
@@ -141,9 +126,6 @@ void Scene1::LateUpdate()
 
         if (INPUT->KeyDown(VK_LBUTTON))
         {
-            skill->SetWorldPos(Hit);
-            skill->visible = true;
-            skill_time = 0.0f;
             player->Attack();
             Vector3 Dir = Hit - player->GetWorldPos();
             Dir.y = 0;
@@ -168,11 +150,6 @@ void Scene1::LateUpdate()
         }
     }
 
-    if (skill_time > 1.0f)
-        skill->visible = false;
-
-    skill_time += DELTA;
-
     cubeManTopRay.position = player->GetWorldPos();
     cubeManTopRay.position.y += 1000.0f;
     Vector3 hit;
@@ -186,8 +163,6 @@ void Scene1::LateUpdate()
             cout << "콜라이더에 막힘" << endl;
         }
     }
-
-    
 
     if (INPUT->KeyDown(VK_MBUTTON))
     {
@@ -204,7 +179,7 @@ void Scene1::LateUpdate()
         findPath = false;
         path.clear();
         route = -1;
-        if (Map->RayCastingCollider(CharacterToMouse, Hit2, dis))
+        if (dis != 0 && Map->RayCastingCollider(CharacterToMouse, Hit2, dis))
         {
             cout << "콜라이더에 막힘" << endl;
             path.push_back(player->GetWorldPos());
@@ -353,12 +328,12 @@ void Scene1::PreRender()
     player->Render();
     monster->Render();
     Map->Render();
-    rain->Render();
-    skill->Render();
     for (int i = 0; i < 50; i++)
     {
         if (pjPool[i]->visible)
             pjPool[i]->Render();
+
+        monsters[i]->Render();
     }
 }
 
