@@ -42,6 +42,12 @@ void Monster::SteerTo(Vector3 target)
 
 		if (dis > 10.0f)
 		{
+			desired *= dis / 10.0f;
+		}
+		else
+		{
+			desired *= 1.0f;
+
 
 		}
 	}
