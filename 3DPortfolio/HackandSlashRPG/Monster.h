@@ -10,6 +10,14 @@ private:
 	float hp;
 
 private:
+	Vector3 velocity;
+	float neighborRadius;
+	float desiredSeparation;
+	void Cohesion(Monster* neighbors[] , int length);
+	void Alignment(Monster* neighbors[], int length);
+	void Seperation(Monster* neighbors[], int length);
+	void SteerTo(Vector3 target);
+
 
 public:
 	void Idle();
