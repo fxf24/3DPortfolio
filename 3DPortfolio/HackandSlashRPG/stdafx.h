@@ -6,4 +6,6 @@
 #include "Projectile.h"
 #include "Player.h"
 #include "Monster.h"
+#include "Boss.h"
 #include "Scene1.h"
+#include "BossScene.h"

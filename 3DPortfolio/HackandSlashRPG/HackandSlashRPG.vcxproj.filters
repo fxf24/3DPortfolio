@@ -2,45 +2,57 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Shop.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="Inven.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="Scene1.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
+    <ClCompile Include="Projectile.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
     <ClCompile Include="Monster.cpp">
-      <Filter>GameObject</Filter>
+      <Filter>GameObject\Characters</Filter>
     </ClCompile>
-    <ClCompile Include="Projectile.cpp">
-      <Filter>GameObject</Filter>
+    <ClCompile Include="Player.cpp">
+      <Filter>GameObject\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Shop.cpp">
+      <Filter>GameObject\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Inven.cpp">
+      <Filter>GameObject\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss.cpp">
+      <Filter>GameObject\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="BossScene.cpp">
+      <Filter>Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="Shop.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Inven.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="Scene1.h">
       <Filter>Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
+    <ClInclude Include="Projectile.h">
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Monster.h">
-      <Filter>GameObject</Filter>
+      <Filter>GameObject\Characters</Filter>
     </ClInclude>
-    <ClInclude Include="Projectile.h">
-      <Filter>GameObject</Filter>
+    <ClInclude Include="Player.h">
+      <Filter>GameObject\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Shop.h">
+      <Filter>GameObject\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Inven.h">
+      <Filter>GameObject\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss.h">
+      <Filter>GameObject\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="BossScene.h">
+      <Filter>Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +61,12 @@
     </Filter>
     <Filter Include="Scene">
       <UniqueIdentifier>{d6f52c3d-ddfd-4043-9cff-08728fd876d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Characters">
+      <UniqueIdentifier>{1dbe2235-a749-4ea1-8719-6996f0be78cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\UI">
+      <UniqueIdentifier>{2f81697d-5609-48a9-8fb7-821606fcb29a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -101,7 +101,6 @@ Monster::Monster()
 	desiredSeparation = 10.0f;
 	attackRange = 6.0f;
 
-	//velocity = Vector3(RANDOM->Float(), 0, RANDOM->Float());
 	velocity = Vector3(0, 0, 0);
 }
 
