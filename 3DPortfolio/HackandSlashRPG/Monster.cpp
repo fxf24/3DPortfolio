@@ -1,59 +1,5 @@
 #include "stdafx.h"
 
-Vector3 Monster::Cohesion(Monster* neighbors[], int length)
-{
-	Vector3 sum = Vector3(0, 0, 0);
-	int count = 0;
-	for (int i = 0; i < length; i++)
-	{
-		if (neighbors[i])
-		{
-			Vector3 d = neighbors[i]->GetWorldPos() - this->GetWorldPos();
-			float dis = d.Length();
-			if (dis != 0 && dis < neighborRadius)
-			{
-				sum += neighbors[i]->GetWorldPos();
-				count++;
-			}
-		}
-	}
-
-	if (count != 0)
-	{
-		return SteerTo(sum / count);
-	}
-	else
-	{
-		return sum;
-	}
-}
-
-Vector3 Monster::Alignment(Monster* neighbors[], int length)
-{
-	Vector3 mean = Vector3(0, 0, 0);
-	int count = 0;
-	for (int i = 0; i < length; i++)
-	{
-		if (neighbors[i])
-		{
-			Vector3 d = neighbors[i]->GetWorldPos() - this->GetWorldPos();
-			float dis = d.Length();
-			if (dis != 0 && dis < neighborRadius)
-			{
-				mean += neighbors[i]->GetVelocity();
-				count++;
-			}
-		}
-	}
-
-	if (count != 0)
-	{
-		mean /= count;
-	}
-
-	return mean;
-}
-
 Vector3 Monster::Seperation(Monster* neighbors[], int length)
 {
 	Vector3 mean = Vector3(0, 0, 0);
@@ -106,13 +52,12 @@ Vector3 Monster::SteerTo(Vector3 target)
 	return steer;
 }
 
-Vector3 Monster::Flock(Monster* neighbors[], int length)
+Vector3 Monster::Flock(Player* player, Monster* neighbors[], int length)
 {
 	Vector3 separation = Seperation(neighbors, length) * SEP_WEIGHT;
-	Vector3 alignment = Alignment(neighbors, length) * ALN_WEIGHT;
-	Vector3 cohesion = Cohesion(neighbors, length) * COH_WEIGHT;
+	Vector3 cohesion = SteerTo(player->GetWorldPos()) * COH_WEIGHT;
 
-	return separation + alignment + cohesion;
+	return separation + cohesion;
 }
 
 void Monster::Idle()
@@ -154,23 +99,47 @@ Monster::Monster()
 
 	neighborRadius    = 20.0f;
 	desiredSeparation = 10.0f;
+	attackRange = 6.0f;
 
-	velocity = Vector3(RANDOM->Float(), 0, RANDOM->Float());
+	//velocity = Vector3(RANDOM->Float(), 0, RANDOM->Float());
+	velocity = Vector3(0, 0, 0);
 }
 
-void Monster::Update(Monster* neighbors[], int length)
+void Monster::Update(Player* player, Monster* neighbors[], int length)
 {
 	Actor::Update();
 	lastPos = GetWorldPos();
 
-	Vector3 acc = Flock(neighbors, length);
-	velocity += acc;
-	if (velocity.Length() > 4.0f)
-	{
-		velocity /= 2.0f;
-	}
-	position += velocity * DELTA;
+	Vector3 ep = player->GetWorldPos() - position;
 
+	if (ep.Length() < neighborRadius && state == PlayerState::IDLE)
+	{
+		ep.Normalize();
+		velocity = ep;
+		Walk();
+	}
+	else if (ep.Length() < attackRange && state == PlayerState::WALK)
+	{
+		Attack();
+		velocity = Vector3();
+	}
+	else if (ep.Length() > neighborRadius && state != PlayerState::IDLE)
+	{
+		Idle();
+		velocity = Vector3();
+	}
+
+	if (state == PlayerState::WALK)
+	{
+		Vector3 acc = Flock(player, neighbors, length);
+		velocity += acc;
+		if (velocity.Length() > 4.0f)
+		{
+			velocity.Normalize();
+			velocity *= 4.0f;
+		}
+		position += velocity * DELTA;
+	}
 	if (state == PlayerState::ATTACK)
 	{
 		if (anim->GetPlayTime() > 0.95)
@@ -178,6 +147,14 @@ void Monster::Update(Monster* neighbors[], int length)
 			Idle();
 		}
 	}
+	if (state != PlayerState::IDLE())
+	{
+		ep.Normalize();
+		float Yaw = atan2f(ep.x, ep.z) + PI;
+		// -PI ~ PI
+		rotation.y = Yaw;
+	}
+
 }
 
 void Monster::WorldUpdate()
