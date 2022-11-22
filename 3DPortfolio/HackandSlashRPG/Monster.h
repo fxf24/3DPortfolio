@@ -1,5 +1,5 @@
 #pragma once
-#define SEP_WEIGHT 10.0f
+#define SEP_WEIGHT 5.0f
 #define ALN_WEIGHT 1.0f
 #define COH_WEIGHT 1.0f
 
@@ -16,11 +16,10 @@ private:
 	Vector3 velocity;
 	float neighborRadius;
 	float desiredSeparation;
-	Vector3 Cohesion(Monster* neighbors[] , int length);
-	Vector3 Alignment(Monster* neighbors[], int length);
+	float attackRange;
 	Vector3 Seperation(Monster* neighbors[], int length);
 	Vector3 SteerTo(Vector3 target);
-	Vector3 Flock(Monster* neighbors[], int length);
+	Vector3 Flock(Player* player, Monster* neighbors[], int length);
 
 
 public:
@@ -29,7 +28,7 @@ public:
 	void Run();
 	void Attack();
 	Monster();
-	void Update(Monster* neighbors[], int length);
+	void Update(Player* player, Monster* neighbors[], int length);
 	void WorldUpdate();
 	Vector3 GetLastPos() { return lastPos; }
 	Vector3 GetVelocity() { return velocity; }
