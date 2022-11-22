@@ -112,6 +112,7 @@ extern Application App;//Extern Global
 #include "Sound.h"
 
 #include "GameObject.h"
+//#include "ObRect.h"
 #include "Camera.h"
 #include "Dijkstra.h"
 #include "Terrain.h"
@@ -125,7 +126,10 @@ extern Application App;//Extern Global
 #include "BlendState.h"
 #include "RasterState.h"
 #include "RenderTarget.h"
-#include "CubeMap.h"
+#include "CubeRenderTarget.h"
+#include "PostEffect.h"
+#include "Environment.h"
+#include "Shadow.h"
 
 #include "Util.h"
 

@@ -12,11 +12,11 @@ Material::Material()
     shininess = 30.0f;
     opacity = 1.0f;
     environment = 0.0f;
+    shadow = 0.0f;
     normalMap = nullptr;
     diffuseMap = nullptr;
     emissiveMap = nullptr;
     specularMap = nullptr;
-    environmentMap = nullptr;
 }
 
 
@@ -26,7 +26,6 @@ Material::~Material()
     SafeReset(diffuseMap);
     SafeReset(specularMap);
     SafeReset(emissiveMap);
-    SafeRelease(environmentMap);
 }
 
 void Material::CreateStaticMember()
@@ -60,7 +59,6 @@ void Material::Set()
     if (diffuseMap)diffuseMap->Set(1);
     if (specularMap)specularMap->Set(2);
     if (emissiveMap)emissiveMap->Set(3);
-    if (environmentMap)D3D->GetDC()->PSSetShaderResources(5, 1, &environmentMap);
 }
 
 void Material::RenderDetail()
@@ -72,6 +70,7 @@ void Material::RenderDetail()
     ImGui::DragFloat("shiness", &shininess, 0.05f);
     ImGui::DragFloat("opacity", &opacity, 0.05f);
     ImGui::DragFloat("environment", &environment, 0.05f,0.0f,1.0f);
+    ImGui::DragFloat("shadow", &shadow, 0.05f,0.0f,1.0f);
 
 
     if (normalMap)
@@ -220,6 +219,7 @@ void Material::LoadFile(string file)
     shininess = in.Float();
     opacity = in.Float();
     environment = in.Float();
+    shadow = in.Float();
 
     in.Close();
 
@@ -290,6 +290,7 @@ void Material::SaveFile(string file)
     out.Float(shininess);
     out.Float(opacity);
     out.Float(environment);
+    out.Float(shadow);
 
     out.Close();
 }

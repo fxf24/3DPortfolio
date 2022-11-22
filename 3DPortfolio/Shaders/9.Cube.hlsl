@@ -74,6 +74,7 @@ float4 PS(PixelInput input) : SV_TARGET
     
     float4 BaseColor = DiffuseMapping(input.Uv);
        
-    
+    if (BaseColor.a == 0)
+        discard;
     return BaseColor;
 }

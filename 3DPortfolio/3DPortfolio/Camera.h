@@ -8,6 +8,7 @@ private:
 	static ID3D11Buffer* viewPosBuffer;
 	static ID3D11Buffer* viewUpBuffer;
 	static ID3D11Buffer* viewForwardBuffer;
+	
 public:
 	static Camera* main;
 public:
@@ -28,6 +29,7 @@ protected:
 public:
 	void	Update() override;
 	void	Set();
+	void	SetShadow();
 	void	RenderDetail();
 	bool    Intersect(Vector3 coord);
 };

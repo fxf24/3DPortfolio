@@ -9,7 +9,7 @@ public:
 	float	shininess;
 	float	opacity;
 	float   environment;
-	float	padding;
+	float	shadow;
 };
 class Material : public MaterialBuffer
 {
@@ -22,7 +22,6 @@ public:
 	shared_ptr<Texture>			diffuseMap;
 	shared_ptr<Texture>			specularMap;
 	shared_ptr<Texture>			emissiveMap;
-	ID3D11ShaderResourceView*   environmentMap;
 	string						file;
 public:
 	Material();

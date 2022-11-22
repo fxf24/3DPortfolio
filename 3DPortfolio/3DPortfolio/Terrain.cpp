@@ -437,10 +437,7 @@ void Terrain::Render()
     }
 
 }
-void Terrain::CubeMapRender()
-{
-    Actor::CubeMapRender();
-}
+
 bool Terrain::RayCastingCollider(Ray WRay, OUT Vector3& HitPoint)
 {
     for (auto it = obList.begin(); it != obList.end(); it++)

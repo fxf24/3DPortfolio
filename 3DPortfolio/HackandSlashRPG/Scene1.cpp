@@ -11,11 +11,11 @@ Scene1::Scene1()
     Map = Terrain::Create();
     Map->LoadFile("Wasteland.xml");
     Map->CreateStructuredBuffer();
+    Map->material->shadow = 1.0f;
     Map->Update();
 
-    RT = new RenderTarget();
-    PostEffect = UI::Create();
-    PostEffect->LoadFile("Window2.xml");
+    shadow = new Shadow();
+    postEffect = new PostEffect();
 
     for (int i = 0; i < 50; i++)
     {
@@ -45,7 +45,6 @@ Scene1::~Scene1()
 
 void Scene1::Init()
 {
-    time = 0.0f;
     Cam->LoadFile("Cam.xml");
     Camera::main = Cam;
     ResizeScreen();
@@ -59,47 +58,14 @@ void Scene1::Release()
 
 void Scene1::Update()
 {
-    if (ImGui::Button("ChangeScene"))
-    {
-        SCENE->ChangeScene("SC2", 1.0f)->Init();
-        time = 0.0f;
-        return;
-    }
-    if (state == SceneState::FADEIN)
-    {
-        BLUR->blur.radius = 2000.0f;
-        BLUR->blur.blendColor
-            = Color::Lerp(Color(0, 0, 0), Color(0.5f, 0.5f, 0.5f), time);
-        time += DELTA;
-        if (time > 1.0f)
-        {
-            state = SceneState::NONE;
-        }
-    }
-    else if (state == SceneState::FADEOUT)
-    {
-        time += DELTA;
-        BLUR->blur.blendColor
-            = Color::Lerp(Color(0.5f, 0.5f, 0.5f), Color(0, 0, 0), time);
-    }
-
-    BLUR->Update();
-
-
-
-    Pos.x = (player->GetWorldPos().x + 128.0f) / (256.0f / 3.0f);
-    Pos.y = (player->GetWorldPos().z - 128.0f) / (-256.0f / 3.0f);
-
-    ImGui::Text("X: %d  Y: %d ", Pos.x, Pos.y);
-
     ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
 
 
     Camera::ControlMainCam();
     LIGHT->RenderDetail();
-    //
-    ////Ui->RenderHierarchy();
-    //
+    shadow->RenderDetail();
+    postEffect->RenderDetail();
+
     ImGui::Begin("Hierarchy");
     sky->RenderHierarchy();
     player->RenderHierarchy();
@@ -111,7 +77,6 @@ void Scene1::Update()
     player->Update();
     Map->Update();
     sky->Update();
-    PostEffect->Update();
 
     for (int i = 0; i < 50; i++)
     {
@@ -336,26 +301,35 @@ void Scene1::LateUpdate()
 void Scene1::PreRender()
 {
     LIGHT->Set();
-    RT->Set();
-    Cam->Set();
-    sky->Render();
-    player->Render();
-    Map->Render();
-    for (int i = 0; i < 50; i++)
     {
-        if (pjPool[i]->visible)
-            pjPool[i]->Render();
-        if (monsters[i])
-            monsters[i]->Render();
+        shadow->SetCapture(Vector3(0, 0, 0));
+        Map->ShadowMapRender();
+        player->ShadowMapRender();
     }
+   
+
+    {
+        postEffect->SetCapture();
+        Cam->Set();
+        sky->Render();
+        player->Render();
+        Map->Render();
+        for (int i = 0; i < 50; i++)
+        {
+            if (pjPool[i]->visible)
+                pjPool[i]->Render();
+            if (monsters[i])
+                monsters[i]->Render();
+        }
+    }
+    
 }
 
 void Scene1::Render()
 {
     //Æ÷½ºÆ®ÀÌÆåÆ® ·»´õ
-    BLUR->Set();
-    PostEffect->material->diffuseMap->srv = RT->GetRTVSRV();
-    PostEffect->Render();
+    postEffect->Render();
+    
 }
 
 void Scene1::ResizeScreen()
@@ -365,8 +339,8 @@ void Scene1::ResizeScreen()
     Cam->viewport.width = App.GetWidth();
     Cam->viewport.height = App.GetHeight();
 
-    if (RT)
+    if (postEffect)
     {
-        RT->ResizeScreen(Cam->viewport.width, Cam->viewport.height);
+        postEffect->ResizeScreen(App.GetWidth(), App.GetHeight());
     }
 }

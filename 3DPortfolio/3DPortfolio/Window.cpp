@@ -12,9 +12,11 @@ WPARAM Window::Run(Scene* main)
 	Material::CreateStaticMember();
 	Skeleton::CreateStaticMember();
 	Terrain::CreateStaticMember();
-	CubeMap::CreateStaticMember();
+	Environment::CreateStaticMember();
 	Rain::CreateStaticMember();
 	Pop::CreateStaticMember();
+	Shadow::CreateStaticMember();
+	PostEffect::CreateStaticMember();
 	BLEND->Set(false);
 	MSG msg = { 0 };
 	while (true)
@@ -56,9 +58,11 @@ WPARAM Window::Run(Scene* main)
 	Material::DeleteStaticMember();
 	Skeleton::DeleteStaticMember();
 	Terrain::DeleteStaticMember();
-	CubeMap::DeleteStaticMember();
+	Environment::DeleteStaticMember();
 	Rain::DeleteStaticMember();
 	Pop::DeleteStaticMember();
+	Shadow::DeleteStaticMember();
+	PostEffect::DeleteStaticMember();
 	TIMER->DeleteSingleton();
 	INPUT->DeleteSingleton();
 	GUI->DeleteSingleton();

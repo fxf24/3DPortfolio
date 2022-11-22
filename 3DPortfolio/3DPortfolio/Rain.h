@@ -18,13 +18,14 @@ struct RAIN_DESC
 class Particle
 {
 protected:
-    //총 재생시간
-    float duration = 1.0f;
+ 
     //현재 재생중인 시간
     float playTime = 0.0f;
     //재생중인가?
     bool isPlaying = false;
 public:
+    //총 재생시간
+    float duration = 1.0f;
     virtual void    Play() 
     {
         playTime = 0.0f;

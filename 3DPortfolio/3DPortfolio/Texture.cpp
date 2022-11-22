@@ -110,6 +110,7 @@ void Texture::CreateSampler()
 {
     SafeRelease(Sampler);
     HRESULT hr;
+
     hr = D3D->GetDevice()->CreateSamplerState(&SamplerDesc, &Sampler);
     Check(hr);
 }

@@ -186,7 +186,8 @@ bool Collider::Intersect(Ray Ray, Vector3& Hit)
 		BoundingBox box1;
 		box1.Center = Vector3(0,0,0);
 		box1.Extents = Vector3(S._11, S._22, S._33) ;
-		Matrix inverse = RT.Invert();
+		Matrix inverse = S.Invert() * W;
+		inverse = inverse.Invert();
 		Ray.position = Vector3::Transform(Ray.position, inverse);
 		Ray.direction = Vector3::TransformNormal(Ray.direction, inverse);
 		Ray.direction.Normalize();
@@ -194,7 +195,7 @@ bool Collider::Intersect(Ray Ray, Vector3& Hit)
 
 		result = Ray.Intersects(box1, Dis);
 		Hit = Ray.position + Ray.direction * Dis;
-		Hit = Vector3::Transform(Hit, RT);
+		Hit = Vector3::Transform(Hit, inverse.Invert());
 	}
 	else
 	{

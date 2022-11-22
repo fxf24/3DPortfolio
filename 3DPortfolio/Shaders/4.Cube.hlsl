@@ -20,6 +20,7 @@ struct PixelInput
     float3 Normal : NORMAL;
     float3 Tangent : TANGENT;
     float3 Binormal : BINORMAL;
+    float4 vPosition : POSITION1;
 };
 
 PixelInput VS(VertexInput input)
@@ -36,6 +37,7 @@ PixelInput VS(VertexInput input)
         output.Position = mul(input.Position, World);
     
     output.wPosition = output.Position;
+    output.vPosition = mul(output.Position, ShadowVP);
     output.Position = mul(output.Position, ViewProj);
     output.Uv = input.Uv;
     output.Normal = mul(input.Normal, (float3x3) World);
@@ -51,6 +53,6 @@ float4 PS(PixelInput input) : SV_TARGET
     float3 Normal = NormalMapping(input.Tangent, input.Binormal, input.Normal, input.Uv);
     
     BaseColor = Lighting(BaseColor, input.Uv, Normal, input.wPosition);
-    
+    BaseColor = AddShadow(BaseColor, input.vPosition);
     return BaseColor;
 }

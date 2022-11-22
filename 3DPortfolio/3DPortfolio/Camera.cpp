@@ -31,9 +31,8 @@ void Camera::Update()
 }
 void Camera::Set()
 {
-
 	{
-		view = RT.Invert();
+		view = (S.Invert()*W).Invert();
 		if (ortho)
 			proj = Matrix::CreateOrthographic(width, height, nearZ, farZ);
 		else
@@ -88,6 +87,63 @@ void Camera::Set()
 		D3D->GetDC()->GSSetConstantBuffers(3, 1, &viewForwardBuffer);
 	}
     D3D->GetDC()->RSSetViewports(1, viewport.Get11());
+}
+
+void Camera::SetShadow()
+{
+	{
+		Matrix TV = view.Transpose();
+		Matrix TP = proj.Transpose();
+		Matrix TVP = view * proj;
+		TVP = TVP.Transpose();
+		D3D11_MAPPED_SUBRESOURCE mappedResource;
+		D3D->GetDC()->Map(VPBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
+		memcpy_s(mappedResource.pData, sizeof(Matrix), &TVP, sizeof(Matrix));
+		D3D->GetDC()->Unmap(VPBuffer, 0);
+
+		D3D11_MAPPED_SUBRESOURCE mappedResource2;
+		D3D->GetDC()->Map(PBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource2);
+		memcpy_s(mappedResource2.pData, sizeof(Matrix), &TP, sizeof(Matrix));
+		D3D->GetDC()->Unmap(PBuffer, 0);
+
+		D3D11_MAPPED_SUBRESOURCE mappedResource3;
+		D3D->GetDC()->Map(VBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource3);
+		memcpy_s(mappedResource3.pData, sizeof(Matrix), &TV, sizeof(Matrix));
+		D3D->GetDC()->Unmap(VBuffer, 0);
+
+		D3D->GetDC()->VSSetConstantBuffers(3, 1, &VBuffer);
+		D3D->GetDC()->VSSetConstantBuffers(4, 1, &PBuffer);
+		D3D->GetDC()->VSSetConstantBuffers(1, 1, &VPBuffer);
+		D3D->GetDC()->GSSetConstantBuffers(0, 1, &VPBuffer);
+	}
+	{
+		Vector4 viewPos = Vector4(GetWorldPos().x, GetWorldPos().y, GetWorldPos().z, 1.0f);
+		D3D11_MAPPED_SUBRESOURCE mappedResource;
+		D3D->GetDC()->Map(viewPosBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
+		memcpy_s(mappedResource.pData, sizeof(Vector4), &viewPos, sizeof(Vector4));
+		D3D->GetDC()->Unmap(viewPosBuffer, 0);
+		D3D->GetDC()->PSSetConstantBuffers(0, 1, &viewPosBuffer);
+		D3D->GetDC()->GSSetConstantBuffers(1, 1, &viewPosBuffer);
+	}
+	{
+		Vector3 viewUp = GetUp();
+		D3D11_MAPPED_SUBRESOURCE mappedResource;
+		D3D->GetDC()->Map(viewUpBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
+		memcpy_s(mappedResource.pData, sizeof(Vector4), &viewUp, sizeof(Vector4));
+		D3D->GetDC()->Unmap(viewUpBuffer, 0);
+		D3D->GetDC()->GSSetConstantBuffers(2, 1, &viewUpBuffer);
+	}
+	{
+		Vector3 viewForward = GetForward();
+		D3D11_MAPPED_SUBRESOURCE mappedResource;
+		D3D->GetDC()->Map(viewForwardBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
+		memcpy_s(mappedResource.pData, sizeof(Vector4), &viewForward, sizeof(Vector4));
+		D3D->GetDC()->Unmap(viewForwardBuffer, 0);
+		D3D->GetDC()->GSSetConstantBuffers(3, 1, &viewForwardBuffer);
+	}
+	D3D->GetDC()->RSSetViewports(1, viewport.Get11());
+
+	
 }
 
 ID3D11Buffer* Camera::VPBuffer = nullptr;
@@ -171,7 +227,8 @@ void Camera::CreateStaticMember()
 		assert(SUCCEEDED(hr));
 
 	}
-    
+	
+	
 }
 
 void Camera::DeleteStaticMember()

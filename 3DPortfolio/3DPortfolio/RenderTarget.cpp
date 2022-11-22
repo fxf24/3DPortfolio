@@ -3,7 +3,6 @@
 RenderTarget::RenderTarget(UINT width, UINT height)
     : width(width), height(height)
 {
-
     HRESULT hr;
     {//Create RTV Texture
         D3D11_TEXTURE2D_DESC desc = { 0 };
@@ -89,10 +88,8 @@ RenderTarget::~RenderTarget()
 
 void RenderTarget::Set(Color clear)
 {
-
     D3D->SetRenderTarget(rtv, dsv);
     D3D->Clear(clear, rtv, dsv);
-
 }
 
 void RenderTarget::ResizeScreen(float width, float height)

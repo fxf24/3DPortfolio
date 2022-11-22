@@ -22,15 +22,6 @@
     <ClCompile Include="Dwrite.cpp">
       <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="BlendState.cpp">
-      <Filter>Render</Filter>
-    </ClCompile>
-    <ClCompile Include="CubeMap.cpp">
-      <Filter>Render</Filter>
-    </ClCompile>
-    <ClCompile Include="DepthState.cpp">
-      <Filter>Render</Filter>
-    </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
@@ -39,9 +30,6 @@
     </ClCompile>
     <ClCompile Include="GOSaveLoad.cpp">
       <Filter>GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="RasterState.cpp">
-      <Filter>Render</Filter>
     </ClCompile>
     <ClCompile Include="RenderTarget.cpp">
       <Filter>Render</Filter>
@@ -118,6 +106,27 @@
     <ClCompile Include="Pop.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="DepthState.cpp">
+      <Filter>State</Filter>
+    </ClCompile>
+    <ClCompile Include="RasterState.cpp">
+      <Filter>State</Filter>
+    </ClCompile>
+    <ClCompile Include="BlendState.cpp">
+      <Filter>State</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeRenderTarget.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="PostEffect.cpp">
+      <Filter>Render\ChildClass</Filter>
+    </ClCompile>
+    <ClCompile Include="Environment.cpp">
+      <Filter>Render\ChildClass</Filter>
+    </ClCompile>
+    <ClCompile Include="Shadow.cpp">
+      <Filter>Render\ChildClass</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
@@ -142,20 +151,8 @@
     <ClInclude Include="Dwrite.h">
       <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="BlendState.h">
-      <Filter>Render</Filter>
-    </ClInclude>
-    <ClInclude Include="CubeMap.h">
-      <Filter>Render</Filter>
-    </ClInclude>
-    <ClInclude Include="DepthState.h">
-      <Filter>Render</Filter>
-    </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="RasterState.h">
-      <Filter>Render</Filter>
     </ClInclude>
     <ClInclude Include="RenderTarget.h">
       <Filter>Render</Filter>
@@ -235,6 +232,27 @@
     <ClInclude Include="Pop.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="RasterState.h">
+      <Filter>State</Filter>
+    </ClInclude>
+    <ClInclude Include="DepthState.h">
+      <Filter>State</Filter>
+    </ClInclude>
+    <ClInclude Include="BlendState.h">
+      <Filter>State</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeRenderTarget.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Environment.h">
+      <Filter>Render\ChildClass</Filter>
+    </ClInclude>
+    <ClInclude Include="PostEffect.h">
+      <Filter>Render\ChildClass</Filter>
+    </ClInclude>
+    <ClInclude Include="Shadow.h">
+      <Filter>Render\ChildClass</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="File">
@@ -251,6 +269,12 @@
     </Filter>
     <Filter Include="GameObject\Member">
       <UniqueIdentifier>{8bec48b6-4dc6-4339-92a6-8741d6e4d73a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="State">
+      <UniqueIdentifier>{a5079a02-387f-41f0-8513-104b2feea9c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Render\ChildClass">
+      <UniqueIdentifier>{f137a482-edd0-4727-9dcd-bf80428dc003}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

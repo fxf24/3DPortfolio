@@ -57,29 +57,6 @@ void Pop::Update()
 	Actor::Update();
 }
 
-void Pop::RenderDetail()
-{
-	Actor::RenderDetail();
-	if (ImGui::BeginTabBar("MyTabBar3"))
-	{
-		if (ImGui::BeginTabItem("Rain"))
-		{
-			Particle::Gui();
-			ImGui::SliderFloat("gravity", &desc.gravity, -100.0f, 100.0f);
-			ImGui::SliderFloat("velocityScalar", &velocityScalar,0.0f, 1000.0f);
-			ImGui::SliderFloat2("particleScale", (float*)&particleScale, 0, 100);
-			ImGui::SliderInt("particleCount", &particleCount, 1, 100);
-
-			if (ImGui::Button("Reset"))
-			{
-				Reset();
-			}
-			ImGui::EndTabItem();
-		}
-		ImGui::EndTabBar();
-	}
-}
-
 void Pop::Reset()
 {
 	delete[](VertexPSV*)mesh->vertices;

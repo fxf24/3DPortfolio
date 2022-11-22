@@ -22,6 +22,7 @@ private:
 	static GameObject*		axis;
 	static Material*		defalutMaterial;
 	static Shader**			cubeMapShader;
+	static Shader**			shadowMapShader;
 public:
 	static GameObject* Create(string name = "GameObject");
 	static void CreateStaticMember();
@@ -50,6 +51,7 @@ public:
 	virtual void	Update();
 	virtual void	Render();
 	virtual void	CubeMapRender();
+	virtual void	ShadowMapRender();
 	void			AddChild(GameObject* child);
 	void			AddBone(GameObject* child);
 	bool			RenderHierarchy();
@@ -85,5 +87,6 @@ public:
 	virtual void	Update();
 	virtual void    Render();
 	virtual void	CubeMapRender();
+	virtual void	ShadowMapRender();
 };
 

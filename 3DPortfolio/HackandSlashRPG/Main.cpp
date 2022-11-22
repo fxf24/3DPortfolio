@@ -11,9 +11,6 @@ Main::~Main()
 
 void Main::Init()
 {
-	BLUR->blur.blendColor.x = 0.0f;
-	BLUR->blur.blendColor.y = 0.0f;
-	BLUR->blur.blendColor.z = 0.0f;
 	SCENE->AddScene("SC1", new Scene1());
 	SCENE->ChangeScene("SC1")->Init();
 }

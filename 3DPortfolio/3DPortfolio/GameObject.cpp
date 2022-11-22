@@ -192,9 +192,42 @@ void GameObject::CubeMapRender()
 	}
 }
 
+void GameObject::ShadowMapRender()
+{
+	if (visible)
+	{
+		if (mesh)
+		{
+			Transform::Set();
+
+			if (shadowMapShader[(int)mesh->vertexType])
+			{
+				shadowMapShader[(int)mesh->vertexType]->Set();
+			}
+			else
+			{
+				return;
+			}
+			mesh->Set();
+
+			if (material)
+				material->Set();
+			else
+				defalutMaterial->Set();
+
+			D3D->GetDC()->DrawIndexed(mesh->indexCount, 0, 0);
+		}
+		for (auto it = children.begin(); it != children.end(); it++)
+		{
+			it->second->ShadowMapRender();
+		}
+	}
+}
+
 GameObject* GameObject::axis = nullptr;
 Material* GameObject::defalutMaterial = nullptr;
 Shader** GameObject::cubeMapShader = nullptr;
+Shader** GameObject::shadowMapShader = nullptr;
 void GameObject::CreateStaticMember()
 {
 	axis = new GameObject();
@@ -203,9 +236,11 @@ void GameObject::CreateStaticMember()
 	axis->S = Matrix::CreateScale(Vector3(500.0f, 500.0f, 500.0f));
 	defalutMaterial = new Material();
 	cubeMapShader = new Shader * [10];
+	shadowMapShader = new Shader * [10];
 	for (int i = 0; i < 10; i++)
 	{
 		cubeMapShader[i] = nullptr;
+		shadowMapShader[i] = nullptr;
 	}
 	for (int i = 0; i < 6; i++)
 	{
@@ -213,26 +248,19 @@ void GameObject::CreateStaticMember()
 		cubeMapShader[i]->LoadFile(to_string(i) + ".CubeMap.hlsl");
 		cubeMapShader[i]->LoadGeometry();
 	}
-	
-
-	/*cubeMapShader[5] = new Shader();
-	cubeMapShader[5]->LoadFile(to_string(5) + ".CubeMap.hlsl");
-	cubeMapShader[5]->LoadGeometry();
-
-	cubeMapShader[4] = new Shader();
-	cubeMapShader[4]->LoadFile(to_string(4) + ".CubeMap.hlsl");
-	cubeMapShader[4]->LoadGeometry();*/
+	for (int i = 1; i < 6; i++)
+	{
+		shadowMapShader[i] = new Shader();
+		shadowMapShader[i]->LoadFile(to_string(i) + ".ShadowMap.hlsl");
+	}
 }
 
 void GameObject::DeleteStaticMember()
 {
 	SafeDelete(axis);
 	SafeDelete(defalutMaterial);
-	for (int i = 0; i < 10; i++)
-	{
-		SafeDelete(cubeMapShader[i]);
-	}
-	
+	SafeDeleteArray(cubeMapShader);
+	SafeDeleteArray(shadowMapShader);
 }
 
 void GameObject::AddChild(GameObject* child)
@@ -321,5 +349,14 @@ void Actor::CubeMapRender()
 		skeleton->Set();
 	}
 	GameObject::CubeMapRender();
+}
+
+void Actor::ShadowMapRender()
+{
+	if (skeleton)
+	{
+		skeleton->Set();
+	}
+	GameObject::ShadowMapRender();
 }
 

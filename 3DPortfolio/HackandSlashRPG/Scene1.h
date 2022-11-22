@@ -10,11 +10,8 @@ private:
 
 	Terrain* Map;
 
-	Int2   Pos;
-
-	//µÎ¹øÂ° ·»´õ Å¸°Ù
-	RenderTarget* RT = nullptr;
-	UI* PostEffect;
+	Shadow* shadow;
+	PostEffect* postEffect = nullptr;
 
 	Vector3			from, to;
 	float			lerpValue;

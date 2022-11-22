@@ -134,10 +134,10 @@ CubeMap::~CubeMap()
 	SafeRelease(dsv);
 }
 
-void CubeMap::Set(Vector3 position, float fov,float zNear, float zFar, Color clear)
+void CubeMap::SetRenderTarget(Vector3 position, float fov,float zNear, float zFar, Color clear)
 {
 
-	water->Set(6);
+	
 	this->position = position;
 
 	//Create Views
@@ -183,7 +183,14 @@ void CubeMap::Set(Vector3 position, float fov,float zNear, float zFar, Color cle
 		D3D->GetDC()->Unmap(camBuffer, 0);
 		D3D->GetDC()->GSSetConstantBuffers(4, 1, &camBuffer);
 	}
+	D3D->SetRenderTarget(rtv, dsv);
+	D3D->Clear(clear, rtv, dsv);
 
+}
+
+void CubeMap::Set()
+{
+	water->Set(6);
 	{
 		D3D11_MAPPED_SUBRESOURCE mappedResource;
 		D3D->GetDC()->Map(PSBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
@@ -191,9 +198,6 @@ void CubeMap::Set(Vector3 position, float fov,float zNear, float zFar, Color cle
 		D3D->GetDC()->Unmap(PSBuffer, 0);
 		D3D->GetDC()->PSSetConstantBuffers(4, 1, &PSBuffer);
 	}
-	D3D->SetRenderTarget(rtv, dsv);
-	D3D->Clear(clear, rtv, dsv);
-
 }
 
 void CubeMap::ResizeScreen(float width, float height)
