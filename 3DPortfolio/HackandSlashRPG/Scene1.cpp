@@ -71,7 +71,7 @@ void Scene1::Update()
     player->RenderHierarchy();
     Map->RenderHierarchy();
     Cam->RenderHierarchy();
-    monsters[0]->RenderHierarchy();
+    //monsters[0]->RenderHierarchy();
     ImGui::End();
 
     Cam->Update();

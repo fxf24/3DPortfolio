@@ -13,8 +13,8 @@ void Main::Init()
 {
 	SCENE->AddScene("SC1", new Scene1());
 	SCENE->AddScene("BOSS", new BossScene());
-	//SCENE->ChangeScene("SC1")->Init();
-	SCENE->ChangeScene("BOSS")->Init();
+	SCENE->ChangeScene("SC1")->Init();
+	//SCENE->ChangeScene("BOSS")->Init();
 }
 
 void Main::Release()
