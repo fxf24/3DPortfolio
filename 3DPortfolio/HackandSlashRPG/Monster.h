@@ -1,6 +1,5 @@
 #pragma once
 #define SEP_WEIGHT 5.0f
-#define ALN_WEIGHT 1.0f
 #define COH_WEIGHT 1.0f
 
 class Monster : public Actor
