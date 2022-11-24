@@ -60,7 +60,6 @@ void Scene1::Update()
 {
     ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
 
-
     Camera::ControlMainCam();
     LIGHT->RenderDetail();
     shadow->RenderDetail();
@@ -74,10 +73,14 @@ void Scene1::Update()
     //monsters[0]->RenderHierarchy();
     ImGui::End();
 
-    Cam->Update();
+    
     player->Update();
     Map->Update();
     sky->Update();
+
+    Cam->SetWorldPosX(player->GetWorldPos().x);
+    Cam->SetWorldPosZ(player->GetWorldPos().z - 40.0f);
+    Cam->Update();
 
     for (int i = 0; i < 50; i++)
     {

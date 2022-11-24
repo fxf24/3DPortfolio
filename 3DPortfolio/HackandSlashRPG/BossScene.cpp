@@ -8,8 +8,8 @@ BossScene::BossScene()
     player = new Player();
     cubeManTopRay.direction = Vector3(0, -1, 0);
 
-    Map = Terrain::Create();
-    Map->LoadFile("Wasteland.xml");
+    Map = Terrain::Create("Bossmap", 128);
+    Map->LoadFile("Bossmap.xml");
     Map->CreateStructuredBuffer();
     Map->material->shadow = 1.0f;
     Map->Update();
@@ -57,12 +57,14 @@ void BossScene::Update()
     player->RenderHierarchy();
     Map->RenderHierarchy();
     Cam->RenderHierarchy();
+    boss->RenderHierarchy();
     ImGui::End();
 
     Cam->Update();
     player->Update();
     Map->Update();
     sky->Update();
+    boss->Update();
 
     for (int i = 0; i < 50; i++)
     {

@@ -2,30 +2,44 @@
 
 void Boss::Idle()
 {
-	state = PlayerState::IDLE;
+	state = BossState::IDLE;
 	anim->PlayAnimation(AnimationState::LOOP, 0);
 	anim->aniScale = 1.0f;
 }
 
 void Boss::Walk()
 {
-	state = PlayerState::WALK;
+	state = BossState::WALK;
 	anim->PlayAnimation(AnimationState::LOOP, 1);
 	anim->aniScale = movementSpeed;
 }
 
 void Boss::Run()
 {
-	state = PlayerState::RUN;
+	state = BossState::RUN;
 	anim->PlayAnimation(AnimationState::LOOP, 2);
 	anim->aniScale = movementSpeed;
 }
 
 void Boss::Attack()
 {
-	state = PlayerState::ATTACK;
+	state = BossState::ATTACK;
 	anim->PlayAnimation(AnimationState::ONCE, 3);
 	anim->aniScale = attackSpeed * 2.0f;
+}
+
+void Boss::JumpAttack()
+{
+	state = BossState::JUMPATTACK;
+	anim->PlayAnimation(AnimationState::ONCE, 4);
+	anim->aniScale = attackSpeed * 2.0f;
+}
+
+void Boss::Die()
+{
+	state = BossState::DIE;
+	anim->PlayAnimation(AnimationState::ONCE, 5);
+	anim->aniScale = movementSpeed;
 }
 
 Boss::Boss()

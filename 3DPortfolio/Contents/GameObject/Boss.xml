@@ -1,7 +1,12 @@
-<Root Name="RootNode" Visible="true" ObType="1" BoneIndex="0">
+<Root Name="Boss" Visible="true" ObType="1" BoneIndex="0">
     <Skeleton File="Mutant/Mutant.skel" BoneIndexCount="40"/>
     <Animations AnimSize="6" File0="Mutant Idle/Mutant Idle0.anim" File1="Mutant Walking/Mutant Walking0.anim" File2="Mutant Run/Mutant Run0.anim" File3="Mutant Swiping/Mutant Swiping0.anim" File4="Mutant Jump Attack/Mutant Jump Attack0.anim" File5="Mutant Dying/Mutant Dying0.anim"/>
     <Shader File="4.cube.hlsl"/>
+    <Collider ColliderType="1" Visible="true">
+        <Position X="0" Y="75" Z="-15"/>
+        <Scale X="40" Y="72" Z="30"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Collider>
     <Transform>
         <Position X="0" Y="0" Z="0"/>
         <Scale X="0.1" Y="0.1" Z="0.1"/>

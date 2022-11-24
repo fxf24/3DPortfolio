@@ -1,9 +1,19 @@
 #pragma once
 
+enum class BossState
+{
+	IDLE,
+	WALK,
+	RUN,
+	ATTACK,
+	JUMPATTACK,
+	DIE,
+};
+
 class Boss : public Actor
 {
 private:
-	PlayerState state;
+	BossState state;
 	Vector3     lastPos;
 	float movementSpeed;
 	float attackSpeed;
@@ -20,6 +30,8 @@ public:
 	void Walk();
 	void Run();
 	void Attack();
+	void JumpAttack();
+	void Die();
 	Boss();
 	void Update();
 	void WorldUpdate();

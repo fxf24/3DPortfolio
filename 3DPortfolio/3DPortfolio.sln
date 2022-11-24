@@ -13,6 +13,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameObject", "GameObject", "{78DB2E57-38CF-4430-AC19-FA06EE2DFE44}"
 	ProjectSection(SolutionItems) = preProject
 		Contents\GameObject\Archer.xml = Contents\GameObject\Archer.xml
+		Contents\GameObject\Boss.xml = Contents\GameObject\Boss.xml
+		Contents\GameObject\Bossmap.xml = Contents\GameObject\Bossmap.xml
 		Contents\GameObject\Cam.xml = Contents\GameObject\Cam.xml
 		Contents\GameObject\Cam2.xml = Contents\GameObject\Cam2.xml
 		Contents\GameObject\Character.xml = Contents\GameObject\Character.xml
