@@ -1,11 +1,11 @@
 #include "stdafx.h"
-
+extern Player* player;
 BossScene::BossScene()
 {
     sky = Sky::Create();
     Cam = Camera::Create();
 
-    player = new Player();
+    //player = new Player();
     cubeManTopRay.direction = Vector3(0, -1, 0);
 
     Map = Terrain::Create("Bossmap", 128);
@@ -28,7 +28,6 @@ BossScene::BossScene()
 BossScene::~BossScene()
 {
     Map->Release();
-
 }
 
 void BossScene::Init()
@@ -36,6 +35,7 @@ void BossScene::Init()
     Cam->LoadFile("Cam.xml");
     Camera::main = Cam;
     ResizeScreen();
+    player->SetWorldPos(Vector3(-54, 0, -54));
 }
 
 void BossScene::Release()
@@ -45,7 +45,10 @@ void BossScene::Release()
 void BossScene::Update()
 {
     ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
-
+    if (ImGui::Button("Sc1"))
+    {
+        SCENE->ChangeScene("SC1")->Init();
+    }
     //Camera::ControlMainCam();
     LIGHT->RenderDetail();
     shadow->RenderDetail();
@@ -80,6 +83,13 @@ void BossScene::LateUpdate()
     Ray Mouse = Util::MouseToRay(INPUT->position, Camera::main);
     Vector3 Hit;
 
+    if (INPUT->KeyDown(VK_MBUTTON))
+    {
+        Map->ComPutePicking(Mouse, Hit);
+
+        cout << Hit.x << " : " << Hit.z << endl;
+    }
+
     if (INPUT->KeyDown(VK_LBUTTON))
     {
         Map->ComPutePicking(Mouse, Hit);
@@ -106,7 +116,7 @@ void BossScene::LateUpdate()
         }
     }
 
-    if (INPUT->KeyDown(VK_MBUTTON))
+    if (INPUT->KeyDown(VK_RBUTTON))
     {
         Vector3 Hit2;
         Ray CharacterToMouse;

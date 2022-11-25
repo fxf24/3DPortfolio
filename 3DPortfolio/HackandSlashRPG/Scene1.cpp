@@ -1,11 +1,12 @@
 #include "stdafx.h"
+extern Player* player;
 
 Scene1::Scene1()
 {
     sky = Sky::Create();
     Cam = Camera::Create();
   
-    player = new Player();
+    //player = new Player();
     cubeManTopRay.direction = Vector3(0, -1, 0);
 
     Map = Terrain::Create();
@@ -45,9 +46,11 @@ Scene1::~Scene1()
 
 void Scene1::Init()
 {
+    player->SetWorldPos(Vector3(-119, 0, -117));
     Cam->LoadFile("Cam.xml");
     Camera::main = Cam;
     ResizeScreen();
+
 }
 
 void Scene1::Release()
@@ -59,6 +62,10 @@ void Scene1::Release()
 void Scene1::Update()
 {
     ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
+    if (ImGui::Button("Boss"))
+    {
+        SCENE->ChangeScene("BOSS")->Init();
+    }
 
     //Camera::ControlMainCam();
     LIGHT->RenderDetail();
@@ -97,6 +104,14 @@ void Scene1::LateUpdate()
     Ray Mouse = Util::MouseToRay(INPUT->position, Camera::main);
     Vector3 Hit;
 
+    if (INPUT->KeyDown(VK_MBUTTON))
+    {
+        Map->ComPutePicking(Mouse, Hit);
+
+        cout << Hit.x << " : " << Hit.z << endl;
+    }
+
+
     if (INPUT->KeyDown(VK_LBUTTON))
     {
         Map->ComPutePicking(Mouse, Hit);
@@ -123,7 +138,7 @@ void Scene1::LateUpdate()
         }
     }
 
-    if (INPUT->KeyDown(VK_MBUTTON))
+    if (INPUT->KeyDown(VK_RBUTTON))
     {
         Vector3 Hit2;
         Ray CharacterToMouse;

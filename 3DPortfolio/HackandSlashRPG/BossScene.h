@@ -6,7 +6,7 @@ private:
 	Camera* Cam;
 
 	Sky* sky;
-	Player* player;
+	//Player* player;
 	Ray		cubeManTopRay;
 
 	Terrain* Map;

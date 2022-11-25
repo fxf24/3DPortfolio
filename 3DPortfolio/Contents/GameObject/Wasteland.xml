@@ -1,4 +1,4 @@
-<Root Name="Terrain" Visible="true" ObType="3">
+<Root Name="Wasteland" Visible="true" ObType="3">
     <Mesh File="3.Wasteland.mesh"/>
     <Shader File="5.Cube.hlsl"/>
     <Material File="wasteland.mtl"/>
@@ -7,10 +7,9 @@
         <Scale X="1" Y="1" Z="1"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Transform>
-    <Terrain showNode="false"/>
     <Children Size="14"/>
-    <Child0 Name="Collider0" Visible="false" ObType="0">
-        <Collider ColliderType="1" Visible="false">
+    <Child0 Name="Collider0" Visible="true" ObType="0">
+        <Collider ColliderType="1" Visible="true">
             <Position X="0" Y="0" Z="0"/>
             <Scale X="1" Y="1" Z="1"/>
             <Rotation X="0" Y="0" Z="0"/>
@@ -22,8 +21,8 @@
         </Transform>
         <Children Size="0"/>
     </Child0>
-    <Child1 Name="Collider1" Visible="false" ObType="0">
-        <Collider ColliderType="1" Visible="false">
+    <Child1 Name="Collider1" Visible="true" ObType="0">
+        <Collider ColliderType="1" Visible="true">
             <Position X="0" Y="0" Z="0"/>
             <Scale X="1" Y="1" Z="1"/>
             <Rotation X="0" Y="0" Z="0"/>
@@ -36,7 +35,7 @@
         <Children Size="0"/>
     </Child1>
     <Child2 Name="Collider10" Visible="true" ObType="0">
-        <Collider ColliderType="1" Visible="false">
+        <Collider ColliderType="1" Visible="true">
             <Position X="0" Y="0" Z="0"/>
             <Scale X="1" Y="1" Z="1"/>
             <Rotation X="0" Y="0" Z="0"/>
@@ -49,7 +48,7 @@
         <Children Size="0"/>
     </Child2>
     <Child3 Name="Collider11" Visible="true" ObType="0">
-        <Collider ColliderType="1" Visible="false">
+        <Collider ColliderType="1" Visible="true">
             <Position X="0" Y="0" Z="0"/>
             <Scale X="1" Y="1" Z="1"/>
             <Rotation X="0" Y="0" Z="0"/>
@@ -61,8 +60,8 @@
         </Transform>
         <Children Size="0"/>
     </Child3>
-    <Child4 Name="Collider12" Visible="false" ObType="0">
-        <Collider ColliderType="1" Visible="false">
+    <Child4 Name="Collider12" Visible="true" ObType="0">
+        <Collider ColliderType="1" Visible="true">
             <Position X="0" Y="0" Z="0"/>
             <Scale X="1" Y="1" Z="1"/>
             <Rotation X="0" Y="0" Z="0"/>
@@ -74,8 +73,8 @@
         </Transform>
         <Children Size="0"/>
     </Child4>
-    <Child5 Name="Collider13" Visible="false" ObType="0">
-        <Collider ColliderType="1" Visible="false">
+    <Child5 Name="Collider13" Visible="true" ObType="0">
+        <Collider ColliderType="1" Visible="true">
             <Position X="0" Y="0" Z="0"/>
             <Scale X="1" Y="1" Z="1"/>
             <Rotation X="0" Y="0" Z="0"/>
@@ -88,7 +87,7 @@
         <Children Size="0"/>
     </Child5>
     <Child6 Name="Collider2" Visible="true" ObType="0">
-        <Collider ColliderType="1" Visible="false">
+        <Collider ColliderType="1" Visible="true">
             <Position X="0" Y="0" Z="0"/>
             <Scale X="1" Y="1" Z="1"/>
             <Rotation X="0" Y="0" Z="0"/>
@@ -101,7 +100,7 @@
         <Children Size="0"/>
     </Child6>
     <Child7 Name="Collider3" Visible="true" ObType="0">
-        <Collider ColliderType="1" Visible="false">
+        <Collider ColliderType="1" Visible="true">
             <Position X="0" Y="0" Z="0"/>
             <Scale X="1" Y="1" Z="1"/>
             <Rotation X="0" Y="0" Z="0"/>
@@ -114,7 +113,7 @@
         <Children Size="0"/>
     </Child7>
     <Child8 Name="Collider4" Visible="true" ObType="0">
-        <Collider ColliderType="1" Visible="false">
+        <Collider ColliderType="1" Visible="true">
             <Position X="0" Y="0" Z="0"/>
             <Scale X="1" Y="1" Z="1"/>
             <Rotation X="0" Y="0" Z="0"/>
@@ -127,7 +126,7 @@
         <Children Size="0"/>
     </Child8>
     <Child9 Name="Collider5" Visible="true" ObType="0">
-        <Collider ColliderType="1" Visible="false">
+        <Collider ColliderType="1" Visible="true">
             <Position X="0" Y="0" Z="0"/>
             <Scale X="1" Y="1" Z="1"/>
             <Rotation X="0" Y="0" Z="0"/>
@@ -140,7 +139,7 @@
         <Children Size="0"/>
     </Child9>
     <Child10 Name="Collider6" Visible="true" ObType="0">
-        <Collider ColliderType="1" Visible="false">
+        <Collider ColliderType="1" Visible="true">
             <Position X="0" Y="0" Z="0"/>
             <Scale X="1" Y="1" Z="1"/>
             <Rotation X="0" Y="0" Z="0"/>
@@ -153,7 +152,7 @@
         <Children Size="0"/>
     </Child10>
     <Child11 Name="Collider7" Visible="true" ObType="0">
-        <Collider ColliderType="1" Visible="false">
+        <Collider ColliderType="1" Visible="true">
             <Position X="0" Y="0" Z="0"/>
             <Scale X="1" Y="1" Z="1"/>
             <Rotation X="0" Y="0" Z="0"/>
@@ -166,7 +165,7 @@
         <Children Size="0"/>
     </Child11>
     <Child12 Name="Collider8" Visible="true" ObType="0">
-        <Collider ColliderType="1" Visible="false">
+        <Collider ColliderType="1" Visible="true">
             <Position X="0" Y="0" Z="0"/>
             <Scale X="1" Y="1" Z="1"/>
             <Rotation X="0" Y="0" Z="0"/>
@@ -179,7 +178,7 @@
         <Children Size="0"/>
     </Child12>
     <Child13 Name="Collider9" Visible="true" ObType="0">
-        <Collider ColliderType="1" Visible="false">
+        <Collider ColliderType="1" Visible="true">
             <Position X="0" Y="0" Z="0"/>
             <Scale X="1" Y="1" Z="1"/>
             <Rotation X="0" Y="0" Z="0"/>

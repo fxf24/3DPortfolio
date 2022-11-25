@@ -148,7 +148,7 @@ bool BinaryReader::Open(wstring filePath)
 
 	bool isChecked = fileHandle != INVALID_HANDLE_VALUE;
 	assert(isChecked);
-	return !isChecked;
+	return isChecked;
 }
 
 void BinaryReader::Close()

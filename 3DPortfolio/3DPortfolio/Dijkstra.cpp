@@ -115,7 +115,7 @@ bool Dijkstra::PathFinding(deque<Vector3>& Way, int Start, int End)
     DiNode* iter = &NodeList[End];
     while (1)
     {
-        //cout << iter->id << "->";
+        cout << iter->id << "->";
         Way.push_back(iter->pos);
 
         if (iter->prev == -1)return false;
@@ -124,7 +124,7 @@ bool Dijkstra::PathFinding(deque<Vector3>& Way, int Start, int End)
         if (iter == &NodeList[Start])
         {
             Way.push_back(iter->pos);
-            //cout << iter->id << endl;
+            cout << iter->id << endl;
             break;
         }
     }
@@ -158,6 +158,7 @@ void Dijkstra::LoadFile(string file)
     this->file = file;
     BinaryReader in;
     wstring path = L"../Contents/Dijkstra/" + Util::ToWString(file);
+    //cout << file << endl;
     if (in.Open(path))
     {
         NodeList.clear();
@@ -176,6 +177,7 @@ void Dijkstra::LoadFile(string file)
                 NodeList[temp.id].linkedWay[id] = cost;
             }
         }
-    } in.Close();
+    } 
+    in.Close();
    
 }

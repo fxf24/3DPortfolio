@@ -9,3 +9,5 @@
 #include "Boss.h"
 #include "Scene1.h"
 #include "BossScene.h"
+
+extern Player* player;
