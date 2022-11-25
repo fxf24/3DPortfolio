@@ -46,8 +46,7 @@ void BossScene::Update()
 {
     ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
 
-
-    Camera::ControlMainCam();
+    //Camera::ControlMainCam();
     LIGHT->RenderDetail();
     shadow->RenderDetail();
     postEffect->RenderDetail();
@@ -60,11 +59,14 @@ void BossScene::Update()
     boss->RenderHierarchy();
     ImGui::End();
 
-    Cam->Update();
     player->Update();
     Map->Update();
     sky->Update();
     boss->Update();
+
+    Cam->SetWorldPosX(player->GetWorldPos().x);
+    Cam->SetWorldPosZ(player->GetWorldPos().z - 25.0f);
+    Cam->Update();
 
     for (int i = 0; i < 50; i++)
     {

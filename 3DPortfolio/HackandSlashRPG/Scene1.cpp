@@ -60,7 +60,7 @@ void Scene1::Update()
 {
     ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
 
-    Camera::ControlMainCam();
+    //Camera::ControlMainCam();
     LIGHT->RenderDetail();
     shadow->RenderDetail();
     postEffect->RenderDetail();
@@ -79,7 +79,7 @@ void Scene1::Update()
     sky->Update();
 
     Cam->SetWorldPosX(player->GetWorldPos().x);
-    Cam->SetWorldPosZ(player->GetWorldPos().z - 40.0f);
+    Cam->SetWorldPosZ(player->GetWorldPos().z - 25.0f);
     Cam->Update();
 
     for (int i = 0; i < 50; i++)

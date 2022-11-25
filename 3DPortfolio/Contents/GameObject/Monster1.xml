@@ -9,7 +9,7 @@
     </Collider>
     <Transform>
         <Position X="0" Y="0" Z="0"/>
-        <Scale X="0.050000001" Y="0.050000001" Z="0.050000001"/>
+        <Scale X="0.025" Y="0.025" Z="0.025"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Transform>
     <Children Size="1"/>
