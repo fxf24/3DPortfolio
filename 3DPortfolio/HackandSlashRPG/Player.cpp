@@ -54,4 +54,5 @@ void Player::Update()
 
 void Player::WorldUpdate()
 {
+	GameObject::Update();
 }

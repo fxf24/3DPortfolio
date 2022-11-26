@@ -52,7 +52,7 @@ Vector3 Monster::SteerTo(Vector3 target)
 	return steer;
 }
 
-Vector3 Monster::Flock(Player* player, Monster* neighbors[], int length)
+Vector3 Monster::Flock(Monster* neighbors[], int length)
 {
 	Vector3 separation = Seperation(neighbors, length) * SEP_WEIGHT;
 	Vector3 cohesion = SteerTo(player->GetWorldPos()) * COH_WEIGHT;
@@ -104,7 +104,7 @@ Monster::Monster()
 	velocity = Vector3(0, 0, 0);
 }
 
-void Monster::Update(Player* player, Monster* neighbors[], int length)
+void Monster::Update(Monster* neighbors[], int length)
 {
 	Actor::Update();
 	lastPos = GetWorldPos();
@@ -130,7 +130,7 @@ void Monster::Update(Player* player, Monster* neighbors[], int length)
 
 	if (state == PlayerState::WALK)
 	{
-		Vector3 acc = Flock(player, neighbors, length);
+		Vector3 acc = Flock(neighbors, length);
 		velocity += acc;
 		if (velocity.Length() > 4.0f)
 		{

@@ -7,7 +7,7 @@ enum class PlayerState
 	ATTACK,
 };
 
-class Player : public Actor
+class Player : public Actor, public Singleton<Player>
 {
 private:
 	PlayerState state;

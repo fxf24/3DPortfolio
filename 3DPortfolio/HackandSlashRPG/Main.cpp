@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "Main.h"
-extern Player* player;
 
 Main::Main()
 {
@@ -11,7 +10,6 @@ Main::~Main()
 
 void Main::Init()
 {
-	player = new Player();
 	SCENE->AddScene("SC1", new Scene1());
 	SCENE->AddScene("BOSS", new BossScene());
 	SCENE->ChangeScene("SC1")->Init();

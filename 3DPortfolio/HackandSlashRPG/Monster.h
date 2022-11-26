@@ -18,7 +18,7 @@ private:
 	float attackRange;
 	Vector3 Seperation(Monster* neighbors[], int length);
 	Vector3 SteerTo(Vector3 target);
-	Vector3 Flock(Player* player, Monster* neighbors[], int length);
+	Vector3 Flock(Monster* neighbors[], int length);
 
 
 public:
@@ -27,7 +27,7 @@ public:
 	void Run();
 	void Attack();
 	Monster();
-	void Update(Player* player, Monster* neighbors[], int length);
+	void Update(Monster* neighbors[], int length);
 	void WorldUpdate();
 	Vector3 GetLastPos() { return lastPos; }
 	Vector3 GetVelocity() { return velocity; }

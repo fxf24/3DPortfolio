@@ -1,5 +1,5 @@
 #include "stdafx.h"
-extern Player* player;
+
 BossScene::BossScene()
 {
     sky = Sky::Create();

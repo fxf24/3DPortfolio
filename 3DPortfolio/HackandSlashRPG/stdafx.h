@@ -10,4 +10,4 @@
 #include "Scene1.h"
 #include "BossScene.h"
 
-extern Player* player;
+#define player Player::GetInstance()

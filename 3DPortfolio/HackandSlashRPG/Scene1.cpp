@@ -1,5 +1,4 @@
 #include "stdafx.h"
-extern Player* player;
 
 Scene1::Scene1()
 {
@@ -46,11 +45,10 @@ Scene1::~Scene1()
 
 void Scene1::Init()
 {
-    player->SetWorldPos(Vector3(-119, 0, -117));
     Cam->LoadFile("Cam.xml");
     Camera::main = Cam;
     ResizeScreen();
-
+    player->SetWorldPos(Vector3(-119, 0, -117));
 }
 
 void Scene1::Release()
@@ -95,7 +93,7 @@ void Scene1::Update()
             pjPool[i]->Update();
 
         if (monsters[i])
-            monsters[i]->Update(player, monsters, 50);
+            monsters[i]->Update(monsters, 50);
     }
 }
 
