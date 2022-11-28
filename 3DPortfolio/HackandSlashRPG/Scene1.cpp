@@ -268,7 +268,7 @@ void Scene1::LateUpdate()
         Vector3 coord = Util::Lerp(from, to, lerpValue);
         player->SetWorldPos(coord);
         Vector3 Dis = from - to;
-        lerpValue += DELTA / Dis.Length() * 20.0f * player->GetMovementSpeed();
+        lerpValue += DELTA / Dis.Length() * 10.0f * player->GetMovementSpeed();
 
         Vector3 Hit2;
         if (Util::RayIntersectMap(cubeManTopRay, Map, Hit2))
