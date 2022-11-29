@@ -15,7 +15,8 @@ private:
 	float movementSpeed;
 	float attackSpeed;
 
-private:
+public:
+	float hp = 100.0f;
 
 public:
 	void Idle();

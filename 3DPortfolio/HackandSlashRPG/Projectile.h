@@ -4,6 +4,8 @@ class Projectile : public GameObject
 private:
 	Vector3 direction;
 	float speed = 1.0f;
+
+public:
 	float damage = 10.0f;
 
 

@@ -17,13 +17,17 @@ private:
 	Vector3     lastPos;
 	float movementSpeed;
 	float attackSpeed;
-	float hp;
 
-private:
-	Vector3 velocity;
-	float neighborRadius;
-	float desiredSeparation;
+	Vector3 dir;
+	float JumpAttackRadius;
+	float AttackRadius;
 	float attackRange;
+	Vector3 jumpFrom, jumpTo;
+	float jumpLength;
+	float jumpLerp;
+
+public:
+	float hp;
 
 public:
 	void Idle();
@@ -36,7 +40,6 @@ public:
 	void Update();
 	void WorldUpdate();
 	Vector3 GetLastPos() { return lastPos; }
-	Vector3 GetVelocity() { return velocity; }
 	float GetMovementSpeed() { return movementSpeed; }
 	float GetAttackSpeed() { return attackSpeed; }
 };

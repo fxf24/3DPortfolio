@@ -279,10 +279,26 @@ void BossScene::LateUpdate()
         {
             if (boss)
             {
-
+                if (pjPool[i]->collider->Intersect(boss->Find("mixamorig:Spine")->collider))
+                {
+                    boss->hp -= pjPool[i]->damage;
+                    cout << boss->hp << endl;
+                    pjPool[i]->visible = false;
+                }
             }
 
         }
+    }
+
+    if (boss->Find("mixamorig:LeftHand")->collider->visible)
+    {
+        if (boss->Find("mixamorig:LeftHand")->collider->Intersect(player->collider))
+        {
+            player->hp -= 10.0f;
+            cout << player->hp << endl;
+            boss->Find("mixamorig:LeftHand")->collider->visible = false;
+        }
+        
     }
 }
 

@@ -2,10 +2,15 @@
     <Skeleton File="Erika Archer With Bow Arrow/Erika Archer With Bow Arrow.skel" BoneIndexCount="78"/>
     <Animations AnimSize="4" File0="Idle/Idle0.anim" File1="Walk/Walk0.anim" File2="Fast Run/Fast Run0.anim" File3="Shoot/Shoot0.anim"/>
     <Shader File="4.cube.hlsl"/>
+    <Collider ColliderType="1" Visible="true">
+        <Position X="0" Y="80" Z="0"/>
+        <Scale X="20" Y="80" Z="20"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Collider>
     <Transform>
-        <Position X="-37.329903" Y="0" Z="-93.361412"/>
+        <Position X="4.083446" Y="-4.7683716e-07" Z="-21.018421"/>
         <Scale X="0.025" Y="0.025" Z="0.025"/>
-        <Rotation X="0" Y="0.74383378" Z="0"/>
+        <Rotation X="0" Y="0.60875273" Z="0"/>
     </Transform>
     <Children Size="1"/>
     <Child0 Name="Offset" Visible="true" ObType="0" BoneIndex="1">

@@ -47,21 +47,92 @@ Boss::Boss()
 	LoadFile("Boss.xml");
 	Idle();
 
-	hp = 10.0f;
+	hp = 1000.0f;
 	movementSpeed = 1.0f;
 	attackSpeed = 1.0f;
 
-	neighborRadius = 20.0f;
-	desiredSeparation = 10.0f;
-	attackRange = 6.0f;
+	JumpAttackRadius = 50.0f;
+	AttackRadius = 30.0f;
+	attackRange = 10.0f;
 
-	velocity = Vector3(0, 0, 0);
+	dir = Vector3(0, 0, 0);
+	jumpLerp = 1.0f;
+
 }
 
 void Boss::Update()
 {
 	Actor::Update();
 	lastPos = GetWorldPos();
+
+	Vector3 ep = player->GetWorldPos() - position;
+
+	if (ep.Length() < AttackRadius && state == BossState::IDLE)
+	{
+		ep.Normalize();
+		dir = ep;
+		Walk();
+	}
+	else if (ep.Length() < JumpAttackRadius && state == BossState::IDLE)
+	{
+		jumpFrom = GetWorldPos();
+		jumpTo = player->GetWorldPos();
+		jumpLerp = 0.0f;
+		jumpLength = ep.Length();
+		ep.Normalize();
+		dir = ep;
+		JumpAttack();
+		cout << "JumpAttack" << endl;
+	}
+	else if (ep.Length() < attackRange && state == BossState::WALK)
+	{
+		Attack();
+		dir = Vector3();
+	}
+	else if (ep.Length() > AttackRadius && state != BossState::IDLE && state != BossState::JUMPATTACK)
+	{
+		Idle();
+		dir = Vector3();
+	}
+
+	if (state == BossState::WALK)
+	{
+		position += dir * DELTA * 2.0f;
+	}
+	if (state == BossState::ATTACK)
+	{
+		if (anim->GetPlayTime() > 0.5)
+		{
+			Find("mixamorig:LeftHand")->collider->visible = true;
+		}
+
+		if (anim->GetPlayTime() > 0.95)
+		{
+			Find("mixamorig:LeftHand")->collider->visible = false;
+			Idle();
+		}
+	}
+	if (state == BossState::JUMPATTACK)
+	{
+		Vector3 coord = Util::Lerp(jumpFrom, jumpTo, jumpLerp);
+		SetWorldPos(coord);
+		jumpLerp += DELTA / jumpLength * 20.0f * GetMovementSpeed();
+
+		cout << jumpLerp << endl;
+		if (jumpLerp > 1.0f)
+		{
+			SetWorldPos(jumpTo);
+			Idle();
+			cout << "in" << endl;
+		}
+	}
+	if (state != BossState::IDLE())
+	{
+		ep.Normalize();
+		float Yaw = atan2f(ep.x, ep.z) + PI;
+		// -PI ~ PI
+		rotation.y = Yaw;
+	}
 }
 
 void Boss::WorldUpdate()
