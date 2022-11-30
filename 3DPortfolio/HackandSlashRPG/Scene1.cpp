@@ -36,6 +36,9 @@ Scene1::Scene1()
             monsters[i]->WorldUpdate();
         }
     }
+
+    lerpValue = 1.0f;
+    RlerpValue = 1.0f;
 }
 
 Scene1::~Scene1()
@@ -306,6 +309,7 @@ void Scene1::LateUpdate()
                         Monster* temp = monsters[j];
                         monsters[j] = nullptr;
                         delete temp;
+                        pjPool[i]->visible = false;
                     }
                 }
             }
@@ -313,6 +317,10 @@ void Scene1::LateUpdate()
         }
     }
 
+    if (Map->Find("Collider14")->collider->Intersect(player->collider))
+    {
+        SCENE->ChangeScene("BOSS")->Init();
+    }
 }
 
 void Scene1::PreRender()

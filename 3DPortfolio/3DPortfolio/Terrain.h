@@ -45,7 +45,7 @@ private:
     ID3D11Buffer* rayBuffer;
 
     Dijkstra                    dijkstra;
-    bool                        showNode = true;
+    bool                        showNode = false;
 public:
     Terrain(string Name);
     float                       uvScale;

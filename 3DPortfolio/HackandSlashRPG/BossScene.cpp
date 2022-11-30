@@ -23,6 +23,9 @@ BossScene::BossScene()
         pjPool[i]->visible = false;
     }
     boss = new Boss();
+
+    lerpValue = 1.0f;
+    RlerpValue = 1.0f;
 }
 
 BossScene::~BossScene()
@@ -299,6 +302,11 @@ void BossScene::LateUpdate()
             boss->Find("mixamorig:LeftHand")->collider->visible = false;
         }
         
+    }
+
+    if (Map->Find("Collider4")->collider->Intersect(player->collider) && boss == nullptr)
+    {
+        SCENE->ChangeScene("SC1")->Init();
     }
 }
 

@@ -7,9 +7,9 @@
         <Scale X="1" Y="1" Z="1"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Transform>
-    <Children Size="4"/>
+    <Children Size="5"/>
     <Child0 Name="Collider0" Visible="true" ObType="0">
-        <Collider ColliderType="1" Visible="true">
+        <Collider ColliderType="1" Visible="false">
             <Position X="0" Y="-10" Z="1"/>
             <Scale X="45" Y="10" Z="7"/>
             <Rotation X="0" Y="0" Z="0"/>
@@ -22,7 +22,7 @@
         <Children Size="0"/>
     </Child0>
     <Child1 Name="Collider1" Visible="true" ObType="0">
-        <Collider ColliderType="1" Visible="true">
+        <Collider ColliderType="1" Visible="false">
             <Position X="0" Y="0" Z="0"/>
             <Scale X="7" Y="10" Z="52"/>
             <Rotation X="0" Y="0" Z="0"/>
@@ -35,7 +35,7 @@
         <Children Size="0"/>
     </Child1>
     <Child2 Name="Collider2" Visible="true" ObType="0">
-        <Collider ColliderType="1" Visible="true">
+        <Collider ColliderType="1" Visible="false">
             <Position X="0" Y="0" Z="0"/>
             <Scale X="52" Y="10" Z="7"/>
             <Rotation X="0" Y="0" Z="0"/>
@@ -48,7 +48,7 @@
         <Children Size="0"/>
     </Child2>
     <Child3 Name="Collider3" Visible="true" ObType="0">
-        <Collider ColliderType="1" Visible="true">
+        <Collider ColliderType="1" Visible="false">
             <Position X="1" Y="0" Z="0"/>
             <Scale X="8" Y="10" Z="50"/>
             <Rotation X="0" Y="0" Z="0"/>
@@ -60,4 +60,17 @@
         </Transform>
         <Children Size="0"/>
     </Child3>
+    <Child4 Name="Collider4" Visible="true" ObType="0">
+        <Collider ColliderType="1" Visible="true">
+            <Position X="0" Y="0" Z="0"/>
+            <Scale X="1" Y="1" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Collider>
+        <Transform>
+            <Position X="-61.507" Y="0" Z="-59.733002"/>
+            <Scale X="5" Y="5" Z="5"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <Children Size="0"/>
+    </Child4>
 </Root>

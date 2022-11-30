@@ -18,12 +18,13 @@ void Projectile::Shoot(Vector3 pos, Vector3 dir, float spd)
 	direction = dir;
 	speed = spd;
 	visible = true;
+	GameObject::Update();
 }
 
 void Projectile::Update()
 {
-	GameObject::Update();
 	position += direction * 10.0f * speed * DELTA;
 	if (position.x < -200 || position.x > 200 || position.z < -200 || position.z > 200)
 		visible = false;
+	GameObject::Update();
 }

@@ -53,7 +53,7 @@ Boss::Boss()
 
 	JumpAttackRadius = 50.0f;
 	AttackRadius = 30.0f;
-	attackRange = 10.0f;
+	attackRange = 8.0f;
 
 	dir = Vector3(0, 0, 0);
 	jumpLerp = 1.0f;
@@ -69,8 +69,6 @@ void Boss::Update()
 
 	if (ep.Length() < AttackRadius && state == BossState::IDLE)
 	{
-		ep.Normalize();
-		dir = ep;
 		Walk();
 	}
 	else if (ep.Length() < JumpAttackRadius && state == BossState::IDLE)
@@ -97,11 +95,13 @@ void Boss::Update()
 
 	if (state == BossState::WALK)
 	{
-		position += dir * DELTA * 2.0f;
+		ep.Normalize();
+		dir = ep;
+		position += dir * DELTA * 5.0f;
 	}
 	if (state == BossState::ATTACK)
 	{
-		if (anim->GetPlayTime() > 0.5)
+		if (anim->GetPlayTime() > 0.4)
 		{
 			Find("mixamorig:LeftHand")->collider->visible = true;
 		}

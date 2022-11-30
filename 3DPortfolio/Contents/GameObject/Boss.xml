@@ -3,9 +3,9 @@
     <Animations AnimSize="6" File0="Mutant Idle/Mutant Idle0.anim" File1="Mutant Walking/Mutant Walking0.anim" File2="Mutant Run/Mutant Run0.anim" File3="Mutant Swiping/Mutant Swiping0.anim" File4="Mutant Jump Attack/Mutant Jump Attack0.anim" File5="Mutant Dying/Mutant Dying0.anim"/>
     <Shader File="4.cube.hlsl"/>
     <Transform>
-        <Position X="-0.031285085" Y="0" Z="-12.578621"/>
+        <Position X="-1.6342665" Y="1.769816e-07" Z="-23.592073"/>
         <Scale X="0.050000001" Y="0.050000001" Z="0.050000001"/>
-        <Rotation X="0" Y="1.4307724" Z="0"/>
+        <Rotation X="0" Y="5.3881092" Z="0"/>
     </Transform>
     <Children Size="1"/>
     <Child0 Name="Offset" Visible="true" ObType="0" BoneIndex="1">
@@ -181,8 +181,8 @@
                                     <Child0 Name="mixamorig:LeftHand" Visible="true" ObType="0" BoneIndex="13">
                                         <Shader File="4.cube.hlsl"/>
                                         <Collider ColliderType="2" Visible="false">
-                                            <Position X="0" Y="0" Z="0"/>
-                                            <Scale X="20" Y="60" Z="10"/>
+                                            <Position X="0" Y="40.000008" Z="0"/>
+                                            <Scale X="20" Y="60" Z="20"/>
                                             <Rotation X="0" Y="0" Z="0"/>
                                         </Collider>
                                         <Transform>
