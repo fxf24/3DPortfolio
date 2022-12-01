@@ -330,6 +330,14 @@ void Scene1::PreRender()
         shadow->SetCapture(Vector3(0, 0, 0));
         Map->ShadowMapRender();
         player->ShadowMapRender();
+
+        for (int i = 0; i < 50; i++)
+        {
+            if (pjPool[i]->visible)
+                pjPool[i]->ShadowMapRender();
+            if (monsters[i])
+                monsters[i]->ShadowMapRender();
+        }
     }
    
 
@@ -337,8 +345,11 @@ void Scene1::PreRender()
         postEffect->SetCapture();
         Cam->Set();
         sky->Render();
-        player->Render();
+
+        shadow->SetTexture();
         Map->Render();
+        player->Render();
+
         for (int i = 0; i < 50; i++)
         {
             if (pjPool[i]->visible)

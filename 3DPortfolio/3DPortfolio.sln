@@ -37,6 +37,39 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameObject", "GameObject", 
 		Contents\GameObject\Window2.xml = Contents\GameObject\Window2.xml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shaders", "Shaders", "{722DFEFB-80A6-4B0D-8CF2-DC915C8BBC52}"
+	ProjectSection(SolutionItems) = preProject
+		Shaders\0.CubeMap.hlsl = Shaders\0.CubeMap.hlsl
+		Shaders\0.Exam.hlsl = Shaders\0.Exam.hlsl
+		Shaders\0.ExamCubeMap.hlsl = Shaders\0.ExamCubeMap.hlsl
+		Shaders\1.Collider.hlsl = Shaders\1.Collider.hlsl
+		Shaders\1.Cube.hlsl = Shaders\1.Cube.hlsl
+		Shaders\1.CubeMap.hlsl = Shaders\1.CubeMap.hlsl
+		Shaders\1.ShadowMap.hlsl = Shaders\1.ShadowMap.hlsl
+		Shaders\2.Cube.hlsl = Shaders\2.Cube.hlsl
+		Shaders\2.CubeMap.hlsl = Shaders\2.CubeMap.hlsl
+		Shaders\2.ShadowMap.hlsl = Shaders\2.ShadowMap.hlsl
+		Shaders\3.Cube.hlsl = Shaders\3.Cube.hlsl
+		Shaders\3.CubeMap.hlsl = Shaders\3.CubeMap.hlsl
+		Shaders\3.ShadowMap.hlsl = Shaders\3.ShadowMap.hlsl
+		Shaders\4.Cube.hlsl = Shaders\4.Cube.hlsl
+		Shaders\4.CubeMap.hlsl = Shaders\4.CubeMap.hlsl
+		Shaders\4.ShadowMap.hlsl = Shaders\4.ShadowMap.hlsl
+		Shaders\5.Cube.hlsl = Shaders\5.Cube.hlsl
+		Shaders\5.CubeMap.hlsl = Shaders\5.CubeMap.hlsl
+		Shaders\5.ShadowMap.hlsl = Shaders\5.ShadowMap.hlsl
+		Shaders\5.TerrainEditor.hlsl = Shaders\5.TerrainEditor.hlsl
+		Shaders\6.Blur.hlsl = Shaders\6.Blur.hlsl
+		Shaders\6.Cube.hlsl = Shaders\6.Cube.hlsl
+		Shaders\6.PostEffect.hlsl = Shaders\6.PostEffect.hlsl
+		Shaders\7.Cube.hlsl = Shaders\7.Cube.hlsl
+		Shaders\7.Rain.hlsl = Shaders\7.Rain.hlsl
+		Shaders\8.Pop.hlsl = Shaders\8.Pop.hlsl
+		Shaders\9.Cube.hlsl = Shaders\9.Cube.hlsl
+		Shaders\Common.hlsl = Shaders\Common.hlsl
+		Shaders\ComputeShader.hlsl = Shaders\ComputeShader.hlsl
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64

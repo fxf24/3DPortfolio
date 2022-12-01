@@ -36,7 +36,7 @@ void Shadow::DeleteStaticMember()
 }
 
 Shadow::Shadow()
-: textureSize(500.0f),range(200.0f),RenderTarget(500.0f, 500.0f)
+: textureSize(1980.0f),range(260.0f),RenderTarget(1980.0f, 1980.0f)
 {
     cam = Camera::Create();
     cam->viewport.width = textureSize;
