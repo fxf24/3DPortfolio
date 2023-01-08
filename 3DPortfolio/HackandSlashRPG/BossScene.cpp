@@ -15,6 +15,7 @@ BossScene::BossScene()
     Map->Update();
 
     shadow = new Shadow();
+    shadow->range = 130.0f;
     postEffect = new PostEffect();
 
     for (int i = 0; i < 50; i++)
@@ -62,13 +63,16 @@ void BossScene::Update()
     player->RenderHierarchy();
     Map->RenderHierarchy();
     Cam->RenderHierarchy();
-    boss->RenderHierarchy();
+    if (boss)
+        boss->RenderHierarchy();
     ImGui::End();
 
     player->Update();
     Map->Update();
     sky->Update();
-    boss->Update();
+
+    if (boss)
+        boss->Update();
 
     Cam->SetWorldPosX(player->GetWorldPos().x);
     Cam->SetWorldPosZ(player->GetWorldPos().z - 25.0f);
@@ -293,21 +297,39 @@ void BossScene::LateUpdate()
         }
     }
 
-    if (boss->Find("mixamorig:LeftHand")->collider->visible)
-    {
-        if (boss->Find("mixamorig:LeftHand")->collider->Intersect(player->collider))
-        {
-            player->hp -= 10.0f;
-            cout << player->hp << endl;
-            boss->Find("mixamorig:LeftHand")->collider->visible = false;
-        }
-        
-    }
-
+    
     if (Map->Find("Collider4")->collider->Intersect(player->collider) && boss == nullptr)
     {
         SCENE->ChangeScene("SC1")->Init();
     }
+    
+    if (boss)
+    {
+        if (boss->Find("mixamorig:LeftHand")->collider->visible)
+        {
+            if (boss->Find("mixamorig:LeftHand")->collider->Intersect(player->collider))
+            {
+                player->hp -= 10.0f;
+                cout << player->hp << endl;
+                boss->Find("mixamorig:LeftHand")->collider->visible = false;
+            }
+        }
+
+        if (boss->hp <= 0 && boss->state != BossState::DIE)
+        {
+            boss->Die();
+        }
+        if (boss->state == BossState::DIE)
+        {
+            deadTimer += DELTA;
+        }
+        if (deadTimer >= 4.0f)
+        {
+            delete boss;
+            boss = nullptr;
+        }
+    }
+    
 }
 
 void BossScene::PreRender()
@@ -317,6 +339,9 @@ void BossScene::PreRender()
         shadow->SetCapture(Vector3(0, 0, 0));
         Map->ShadowMapRender();
         player->ShadowMapRender();
+
+        if (boss)
+            boss->ShadowMapRender();
     }
 
 
@@ -324,9 +349,14 @@ void BossScene::PreRender()
         postEffect->SetCapture();
         Cam->Set();
         sky->Render();
+        
+        shadow->SetTexture();
         player->Render();
         Map->Render();
-        boss->Render();
+        if (boss)
+        {
+            boss->Render();
+        }
         for (int i = 0; i < 50; i++)
         {
             if (pjPool[i]->visible)

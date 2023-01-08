@@ -47,7 +47,7 @@ Boss::Boss()
 	LoadFile("Boss.xml");
 	Idle();
 
-	hp = 1000.0f;
+	hp = 100.0f;
 	movementSpeed = 1.0f;
 	attackSpeed = 1.0f;
 
@@ -87,7 +87,7 @@ void Boss::Update()
 		Attack();
 		dir = Vector3();
 	}
-	else if (ep.Length() > AttackRadius && state != BossState::IDLE && state != BossState::JUMPATTACK)
+	else if (ep.Length() > AttackRadius && state != BossState::IDLE && state != BossState::JUMPATTACK && state != BossState::DIE)
 	{
 		Idle();
 		dir = Vector3();
@@ -126,7 +126,11 @@ void Boss::Update()
 			cout << "in" << endl;
 		}
 	}
-	if (state != BossState::IDLE())
+	if (state == BossState::DIE)
+	{
+
+	}
+	if (state != BossState::IDLE && state != BossState::DIE)
 	{
 		ep.Normalize();
 		float Yaw = atan2f(ep.x, ep.z) + PI;

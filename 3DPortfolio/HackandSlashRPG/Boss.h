@@ -13,7 +13,6 @@ enum class BossState
 class Boss : public Actor
 {
 private:
-	BossState state;
 	Vector3     lastPos;
 	float movementSpeed;
 	float attackSpeed;
@@ -28,6 +27,7 @@ private:
 
 public:
 	float hp;
+	BossState state;
 
 public:
 	void Idle();

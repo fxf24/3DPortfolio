@@ -25,6 +25,9 @@ private:
 
 	Projectile* pjPool[50];
 	Boss* boss;
+
+	float deadTimer = 0.0f;
+
 public:
 	BossScene();
 	~BossScene();
