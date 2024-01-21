@@ -202,15 +202,6 @@ float4 PS(PixelInput input) : SV_TARGET
     
     float4 TextureColor;
     TextureColor = TextureD.Sample(SamplerD, input.Uv);
-    //TextureColor.x = 1.0f - TextureColor.x;
-    
-    //if (TextureColor.x)
-    //{
-    //    return float4(1.0f, 1.0f, 1.0f, 1.0f);
-    //}
-    
-    //TextureColor.x *= 100.0f;
-    //return float4(TextureColor.x, TextureColor.x, TextureColor.x, 1.0f);
     
     if (select == 0)
         TextureColor = TextureD.Sample(SamplerD, input.Uv);

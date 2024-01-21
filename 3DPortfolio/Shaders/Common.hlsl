@@ -386,7 +386,6 @@ float4 Lighting(float4 BaseColor, float2 Uv ,float3 Normal, float3 wPosition)
         }
     }
     
-    
     //¹ß±¤
     //Ambient
     Result.rgb += Ka.rgb * BaseColor.rgb;
